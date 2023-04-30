@@ -1,6 +1,9 @@
 {
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "WEB-INF/lib/javax.servlet.jar"
+        "WEB-INF/lib/javax.servlet.jar",
+        "WEB-INF/lib/jstl.jar",
+        "WEB-INF/lib/postgresql-42.2.18.jar",
+        "WEB-INF/lib/standard.jar"
     ]
 }
