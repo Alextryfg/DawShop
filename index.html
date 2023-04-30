@@ -4,19 +4,19 @@
     </head>
     <body bgcolor="#FDF5E6"> <!--Esto esta fatal ahi, dijo el profe de hacer una hoja de estilo-->
       <table align="center" border="0">
-		<!--HII?-->
+		<!--User: admin Password: 1234 TOMCAT-->
 	<tr> 
 	  <th><IMG SRC="" ALIGN="CENTER"></th>
-	  <th><font face="Times New Roman,Times" size="+3">M�sica para DAA</font></th>
+	  <th><font face="Times New Roman,Times" size="+3">Musica para DAA</font></th>
 	  <th><IMG SRC="" ALIGN="CENTER"></th>
 	</tr>
       </table>
       <hr>
 	<p>
 	  <center>
-	    <form action="" >
+	    <form action="Controlador" method = "post">
 	      <b>CD:</b> 
-	      <select name=>
+	      <select name="disco">
 		<option>Yuan | The Guo Brothers | China | $14.95</option>
 		<option>Drums of Passion | Babatunde Olatunji | Nigeria | $16.95</option>
 		<option>Kaira | Tounami Diabate| Mali | $16.95</option>
@@ -29,10 +29,10 @@
 		<option>DAA | GSTIC | Spain | $50.00</option>
 	      </select>
 	      <b>Cantidad:</b>
-	      <input type="text" name="" value="1">
+	      <input type="text" name="cantidad" value="1">
 		<p>
 		  <center>
-		    <input type="submit" value="Selecciona Producto">
+		    <input type="submit" name ="seleccion" value="Producto a carrito">
 		  </center>
 	    </form>
 	  </center>
