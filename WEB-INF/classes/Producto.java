@@ -8,16 +8,19 @@ public class Producto {
     private Float precioMult;
     private Integer num; //indice del producto en el carrito
 
-    public Producto(String id, String cantidad) {
+    public Producto(String ids, String cantidad) {
 
         // Recuperamos informacion del precio del CD
 
-        StringTokenizer t = new StringTokenizer(id,"|");
+        StringTokenizer t = new StringTokenizer(ids,"|");
         t.nextToken();
         t.nextToken();
         t.nextToken();
         String precioString = t.nextToken();
         precioString = precioString.replace('$',' ').trim();
+
+        int segundaPosicion = ids.indexOf("|", ids.indexOf("|") + 1);
+        String id = ids.substring(0, segundaPosicion).trim();
 
         //Insertamos la informacion en cada Var del producto
 

@@ -1,6 +1,7 @@
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import org.omg.CORBA.SystemException;
 import org.omg.PortableInterceptor.ForwardRequest;
 
 import java.io.*;
@@ -18,17 +19,20 @@ public class Controlador extends HttpServlet {
 
   // Aquí van los métodos doPost y doGet para procesar las peticiones.
 
-  // Manejar solicitudes GET
-  public void doGet(HttpServletRequest request, HttpServletResponse response)
+  // Manejar solicitudes Post
+  public void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+      doGet(request,response);
 
   // Código para manejar la solicitud GET aquí
 
   }
 
-// Manejar solicitudes POST
-  public void doPost(HttpServletRequest request, HttpServletResponse response)    
+// Manejar solicitudes Get
+  public void doGet(HttpServletRequest request, HttpServletResponse response)    
     throws ServletException, IOException {
+
+    
 
   // Generamos un objeto sesion
   HttpSession session = request.getSession(true);
@@ -38,7 +42,6 @@ public class Controlador extends HttpServlet {
 
       // Ejecutamos en funcion de la accion del usuario
       if (request.getParameter("seleccion") != null ) {
-          // Acciones
 
           // Obtenemos el id de disco a partir de la peticion
           String id = request.getParameter("disco");
@@ -46,7 +49,7 @@ public class Controlador extends HttpServlet {
           // Obtenemos la cantidad a partir de la peticion
           String cantidad = request.getParameter("cantidad");
           
-          //Recorremos el carrito dentro de session  y metemos lo que sea
+          //Recuperamos el carrito anterior
           Carro temp = (Carro) session.getAttribute("carro");
 
           //Si el carrito no existe, lo creamos
@@ -63,7 +66,14 @@ public class Controlador extends HttpServlet {
           temp.setNum();
 
           //Actualizamos el carrito por lo que la info se conservara mientras el user navegue por la app en esta sesion
+          session.setAttribute("lista", temp.getIds());
+
+          session.setAttribute("compra", temp.getCompra());
+
           session.setAttribute("carro", temp);
+
+          String ciudad = "Santiagozzzzzz1";
+          request.setAttribute("atr", ciudad);
 
           //Redireccionamos a la pagina de carrito
           gotoPage("/jsp/Carrito.jsp", request, response);
