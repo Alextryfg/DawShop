@@ -17,41 +17,46 @@
 
 <center> 
 
-    <H1>Carrito</H1>
+<H1>Carrito</H1>
 
-    <table class="table table-dark" style="" >
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Titulo del Disco</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Importe</th>
-            <th scope="col">Opcion</th>
-          </tr>
-        </thead>
-        <tbody>
-            <c:forEach items="${compra}" var="item" varStatus="loop">
-            <tr>
-              <th scope="row"><c:out value="${item.num}"/></th>
-              <td><c:out value="${item.id}"/></td>
-              <td><c:out value="${item.cantidad}"/></td>
-              <td><c:out value="${item.precioMult}"/></td>
-              <td><input type="submit" name="out" value="Eliminar"></td> 
-            </tr>
-          </c:forEach>
-        </tbody>
-      </table>
+<c:set var="total" value="0" />
+
+<table class="table table-dark">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titulo del Disco y Autor</th>
+        <th scope="col">Cantidad</th>
+        <th scope="col">Importe</th>
+        <th scope="col">Opcion</th>
+        </tr>
+    </thead>
+    <tbody>
+        <form action="Controlador" method="post">
+        <c:forEach items="${compra}" var="item" varStatus="loop">
+        <tr>
+            <th scope="row"><c:out value="${item.num}"/></th>
+            <td><c:out value="${item.id}"/></td>
+            <td><c:out value="${item.cantidad}"/></td>
+            <td><c:out value="${item.precioMult}"/></td>
+            <!--Utilizo un campo oculto, aunque se podria hacer de varias otras formas-->
+            <input type="hidden" name="itemId" value="${item.id}"/> <!-- o value="${item.num}" si corresponde-->
+            <td><bd><input type="submit" name="delete" class="btn btn-danger" value="delete"></bd></td> 
+        </tr>
+        <c:set var="total" value="${total + item.precioMult}" />
+        </c:forEach>
+        </form>
+    </tbody>
+</table>
+
+<c:set var="formattedTotal" value="${String.format('%.2f', total)}" />
+<p><strong>Precio Total :  <c:out value="${formattedTotal}" /></strong></p>
+
     
 <a href="index.html"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
 <button type="button" class="btn btn-outline-primary">Pagar</button>
 
 <!--Pruebas-->
-
-<p>La ciudad se llama : ${atr}</p>
-<p> El id es ${lista[0]}</p>
-<p> La compra es ${compra[0].precio}</p>
-
-</form>
 </center> 
 </BODY></HTML>
 

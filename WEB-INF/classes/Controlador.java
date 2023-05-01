@@ -67,18 +67,53 @@ public class Controlador extends HttpServlet {
           temp.setNum();
 
           //Actualizamos el carrito por lo que la info se conservara mientras el user navegue por la app en esta sesion
-          session.setAttribute("lista", temp.getIds());
 
           session.setAttribute("compra", temp.getCompra());
 
           session.setAttribute("carro", temp);
 
-          String ciudad = "Santiagozzzzzz1";
-          request.setAttribute("atr", ciudad);
+
 
           //Redireccionamos a la pagina de carrito
           gotoPage("/jsp/Carrito.jsp", request, response);
 
+      }else if (request.getParameter("delete") != null ) {
+
+        
+        String idRemove = request.getParameter("itemId");
+        
+        // Obtenemos el carrito de la sesion
+        Carro temp = (Carro)session.getAttribute("carro");
+
+        // Obtenemos el numero de disco a partir de la peticion
+
+        // Eliminamos el disco correspondiente
+        for(Producto p: temp.getCompra()){
+          if(p.getId().equals(idRemove)){
+            temp.getCompra().remove(p);
+            break;
+          }
+        }
+          
+        //Comprobamos si el carrito esta vacio para redireccionar a una pagina donde indiquemos que el carrito esta vacio
+
+        if (temp.getCompra().size() == 0) {
+          // almacenar el carrito actualizado
+          session.setAttribute("carro", null);
+
+          //Vamos a una pagina donde indiquemos que el contenido del carrito esta vacio
+          gotoPage("/jsp/Vacio.jsp", request, response);
+
+        } else {
+          // almacenar el carrito actualizado
+          session.setAttribute("carro", temp);
+
+          //Volvemos a la página en la que estabamos
+          gotoPage("/jsp/Carrito.jsp", request, response);
+        }
+
+        
+        
       }
 
   
