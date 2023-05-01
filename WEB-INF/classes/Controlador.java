@@ -1,5 +1,3 @@
-
-
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -44,16 +42,30 @@ public class Controlador extends HttpServlet {
 
           // Obtenemos el id de disco a partir de la peticion
           String id = request.getParameter("disco");
+
           // Obtenemos la cantidad a partir de la peticion
           String cantidad = request.getParameter("cantidad");
-
-          //Aqui lo meteriamos dentro del carrito, sin embargo, aun no esta codificado.
-          //System.out.println("Disco: " + id + " Cantidad: " + cantidad);
           
           //Recorremos el carrito dentro de session  y metemos lo que sea
+          Carro temp = (Carro) session.getAttribute("carro");
+
+          //Si el carrito no existe, lo creamos
+          if (temp == null) {
+              temp = new Carro();
+          }
+
+          //Creamos un producto con el id y la cantidad
+          Producto p = new Producto(id, cantidad);
+
+          //Añadimos el producto al carrito
+          temp.addProducto(p);
+          //Actualizamos el numero de productos
+          temp.setNum();
+
+          //Actualizamos el carrito por lo que la info se conservara mientras el user navegue por la app en esta sesion
+          session.setAttribute("carro", temp);
 
           //Redireccionamos a la pagina de carrito
-
           gotoPage("/jsp/Carrito.jsp", request, response);
 
       }
