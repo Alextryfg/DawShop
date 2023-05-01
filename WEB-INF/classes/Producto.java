@@ -42,6 +42,11 @@ public class Producto {
         return this.cantidad;
     }
 
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
+        this.precioMult = this.precio*this.cantidad;
+    }
+
     public Float getPrecioMult() {
         return this.precioMult;
     }
