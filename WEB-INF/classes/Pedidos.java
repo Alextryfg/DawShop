@@ -4,17 +4,15 @@ public class Pedidos {
     
     private String id;
     private String nombre;
-    private String correo;
     private String tipoTarjeta;
     private String numTarjeta;
     private String precioTotal;
 
     //El constructor para crear el pedido actual
 
-    public Pedidos(String id, String nombre, String correo, String tipoTarjeta, String numTarjeta, String precioTotal) {
+    public Pedidos(String id, String nombre, String tipoTarjeta, String numTarjeta, String precioTotal) {
         this.id = id;
         this.nombre = nombre;
-        this.correo = correo;
         this.tipoTarjeta = tipoTarjeta;
         this.numTarjeta = numTarjeta;
         this.precioTotal = precioTotal;
@@ -28,10 +26,6 @@ public class Pedidos {
 
     public String getNombre() {
         return this.nombre;
-    }
-
-    public String getCorreo() {
-        return this.correo;
     }
 
     public String getTipoTarjeta() {
@@ -52,10 +46,6 @@ public class Pedidos {
 
     public void setNombre(String nombre) {
         this.nombre= nombre;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
     }
 
     public void setTipoTarjeta(String tipoTarjeta) {

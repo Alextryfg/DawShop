@@ -65,6 +65,9 @@
         <!--En caso contrario, muestro el contenido de la variable-->
         <c:if test="${not empty usuario}">
         <p>Sesion iniciada con el usuario <c:out value="${username}"/></p>
+        <form action="formularioUsers" method="post">
+        <input type="submit" name="cerrarSesion" class="btn btn-outline-primary" value="Cerrar Sesion" style="margin-top: 10px;margin-bottom: 10px;">
+        </form>
         </c:if>
               
 
@@ -77,5 +80,3 @@
 
     </body>
 </html>
-
-

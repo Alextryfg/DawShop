@@ -29,7 +29,7 @@
 
 <p><strong>Precio Total :  <c:out value="${total}"/></strong></p>
     
-<a href="index.html"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+<a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
 
 <!--Pruebas-->
 </center> 

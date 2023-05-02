@@ -48,7 +48,7 @@
     <input type="submit" name="confirmarRegistro" class="btn btn-outline-primary" value="Registrase" style="margin-top: 10px;margin-bottom: 10px;">
     <button type="submit" name="inicioSesion" class="btn btn-primary">Volver a Inicio de Sesion</button><p>
         
-    <a href="index.html"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+    <a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
 
 </form>
 

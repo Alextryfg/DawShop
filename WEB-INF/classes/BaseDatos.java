@@ -18,9 +18,10 @@ public class BaseDatos {
         String conector = "org.postgresql.Driver";
         Class.forName(conector).newInstance();
 
-        String URL = "jdbc:postgresql://127.0.0.1:5432/tienda";
-
-        String username = "Alex";
+        //String URL = "jdbc:postgresql://127.0.0.1:5432/tienda";
+        String URL = "jdbc:postgresql://127.0.0.1:5432/tiendaDAW";
+        //String username = "Alex";
+        String username = "alex";
         String password = "12345";
 
         connection = DriverManager.getConnection(URL, username, password);
@@ -64,13 +65,16 @@ public class BaseDatos {
     // alamcena pedido en DB
     ps = null;
 
-    query = "INSERT INTO pedidos (nombre,correo,tipotarjeta,numerotarjeta,preciototal) VALUES(?,?,?,?,?)";
+    //query = "INSERT INTO pedidos (nombre,correo,tipotarjeta,numerotarjeta,preciototal) VALUES(?,?,?,?,?)";
+    query = "INSERT INTO pedidos (identificador,nombreuser,tipotarjeta,numerotarjetauser,preciototal) VALUES(?,?,?,?,?)";
 
     try {
       ps = connection.prepareStatement(query);
 
-      ps.setString(1, p.getNombre());
-      ps.setString(2, p.getCorreo());
+      
+      //ps.setString(2, p.getCorreo());
+      ps.setString(1, p.getId());
+      ps.setString(2, p.getNombre());
       ps.setString(3, p.getTipoTarjeta());
       ps.setString(4, p.getNumTarjeta());
       ps.setString(5, p.getPrecioTotal());
@@ -89,7 +93,7 @@ public class BaseDatos {
   public boolean existeUsuario(String correo) {
     boolean resultado = true;
 
-    query = "SELECT * FROM usuarios WHERE correouser =?";
+    query = "SELECT * FROM usuarios WHERE direccioncorreo =?";
 
     try {
       ps = connection.prepareStatement(query);
@@ -109,15 +113,16 @@ public class BaseDatos {
   public boolean insertarUsuario(Users u) {
     ps = null;
 
-    query = "INSERT INTO usuarios (nombreuser,correouser,numerotarjetauser,passworduser) VALUES(?,?,?,?)";
+    query = "INSERT INTO usuarios (nombre,direccioncorreo,numerotarjeta,password) VALUES(?,?,?,?)";
 
     try {
       ps = connection.prepareStatement(query);
 
       ps.setString(1, u.getNombreUser());
       ps.setString(2, u.getCorreoUser());
+      //poner el numero de tarjeta, lo de abajo es el tipo
       ps.setString(3, u.getNumeroTarjetaUser());
-	  ps.setString(4, u.getPasswordUser());
+	    ps.setString(4, u.getPasswordUser());
 
       ps.executeUpdate();
 
@@ -131,7 +136,7 @@ public class BaseDatos {
   public Users iniciarSesion(Users u) {
     Users resultado = null;
 
-    query = "SELECT * FROM usuarios WHERE correouser=? and passworduser=?";
+    query = "SELECT * FROM usuarios WHERE direccioncorreo=? and password=?";
 
     
 
@@ -143,7 +148,7 @@ public class BaseDatos {
       rs = ps.executeQuery();
 
       if (rs.next()) {
-        resultado = new Users(rs.getString("nombreuser"), rs.getString("correouser"), rs.getString("numerotarjetauser"), rs.getString("passworduser"));
+        resultado = new Users(rs.getString("nombre"), rs.getString("direccioncorreo"), rs.getString("numerotarjeta"), rs.getString("password"));
         
       }
     } catch (SQLException e) {

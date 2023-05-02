@@ -55,8 +55,8 @@
 
 <form action="formularioUsers" method="post"> 
 
-    <a href="index.html"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
-    <input type="submit" name ="inicioSesion" class="btn btn-outline-primary" value="Pagar">
+    <a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+    <input type="submit" name ="pagar" class="btn btn-outline-primary" value="Pagar">
 
 </form>
 

@@ -54,13 +54,13 @@ public class formularioUsers extends HttpServlet {
     }else if (request.getParameter("inicioSesion") != null){
 
         //Si ya tenemos la sesion iniciada, vamos a la pagina de compra directamente
-        if(session.getAttribute("usuario") != null){
-          gotoPage("/jsp/CompraRealizada.jsp", request, response);
+        /*if(session.getAttribute("usuario") != null){
+          gotoPage("/jsp/IniciarUser.jsp", request, response);
 
         }else{ //En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
           gotoPage("/jsp/IniciarUser.jsp", request, response);
-        }
-        
+        }*/
+        gotoPage("/jsp/IniciarUser.jsp", request, response);
 
     }else if (request.getParameter("confirmarRegistro") != null){
 
@@ -107,7 +107,16 @@ public class formularioUsers extends HttpServlet {
             session.setAttribute("usuario", correo);
             session.setAttribute("username", username);
             //Vamos a la pagina final donde se confirmará la compra y se muestra la informacion
-            gotoPage("/jsp/CompraRealizada.jsp", request, response);
+            Carro temp = (Carro)session.getAttribute("carro");
+            if(temp==null){
+              temp = new Carro();
+            }
+            //if(!temp.getCompra().isEmpty()){
+            if (temp.getCompra().size() != 0) {
+              gotoPage("/jsp/CompraRealizada.jsp", request, response);
+            }else{
+              gotoPage("/jsp/Vacio.jsp", request, response);
+            }
         }
 
 
@@ -121,7 +130,25 @@ public class formularioUsers extends HttpServlet {
           session.setAttribute("carro", c);
           session.setAttribute("compra", c.getCompra());
 
-          gotoPage("/index.html", request, response);
+          gotoPage("/index.jsp", request, response);
+
+
+    }else if (request.getParameter("pagar") != null){
+
+      //Si ya tenemos la sesion iniciada, vamos a la pagina de compra directamente
+      if(session.getAttribute("usuario") != null){
+        gotoPage("/jsp/CompraRealizada.jsp", request, response);
+
+      }else{ //En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
+        gotoPage("/jsp/IniciarUser.jsp", request, response);
+      }
+
+    }else if (request.getParameter("cerrarSesion") != null){
+
+      session.setAttribute("usuario", null);
+      session.setAttribute("username", null);
+      
+      gotoPage("/index.jsp", request, response);
 
 
     }
