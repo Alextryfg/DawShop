@@ -52,9 +52,13 @@
 <c:set var="formattedTotal" value="${String.format('%.2f', total)}" />
 <p><strong>Precio Total :  <c:out value="${formattedTotal}" /></strong></p>
 
-    
-<a href="index.html"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
-<button type="button" class="btn btn-outline-primary">Pagar</button>
+<form action="formularioUsers" method="post"> 
+
+    <a href="index.html"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+    <input type="submit" name ="inicioSesion" class="btn btn-outline-primary" value="Pagar">
+
+</form>
+
 
 <!--Pruebas-->
 </center> 

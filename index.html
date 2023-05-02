@@ -19,12 +19,12 @@
 		<th><img src="" ALIGN="center"></th>
 		</tr>
     </table>
-      <hr>
-	<p>
-	  <center>
-	    <form action="Controlador" method = "post">
-	      <b>CD:</b> 
-	      <select name="disco">
+    <hr>
+	<center>
+		
+		<form action="Controlador" method = "post">
+		<b>CD:</b> 
+		<select name="disco">
 		<option>Yuan | The Guo Brothers | China | $14.95</option>
 		<option>Drums of Passion | Babatunde Olatunji | Nigeria | $16.95</option>
 		<option>Kaira | Tounami Diabate| Mali | $16.95</option>
@@ -35,17 +35,29 @@
 		<option>Rapture | Nusrat Fateh Ali Khan | Pakistan | $12.95</option>
 		<option>Cesaria Evora | Cesaria Evora | Cape Verde | $16.95</option>
 		<option>DAA | GSTIC | Spain | $50.00</option>
-	      </select>
-	      <b>Cantidad:</b>
-	      <input type="text" name="cantidad" value="1">
-	<p>
+		</select>
+		<b>Cantidad:</b>
+		<input type="text" name="cantidad" value="1"><p>
 		  
-		<input type="submit" name ="seleccion" class="btn btn-success" value="Producto a carrito">
+		<input type="submit" name ="seleccion" class="btn btn-success" value="Producto a carrito" style="margin-top: 10px;margin-bottom: 10px;">
+		<input type="submit" name="view" class="btn btn-success" value="Ver carrito" style="margin-top: 10px;margin-bottom: 10px;">		
 
 	    </form>
 
-	  </center>
-	</hr>
+		<hr><p>
+
+		<form action="formularioUsers" method = "post">
+
+			<th><font face="Times New Roman,Times" size="+3">Inicia Sesion o Registrate!</font></th><p></p>
+			<input type="submit" name ="inicioSesion" class="btn btn-outline-primary" value="Iniciar Sesion" style="margin-top: 10px;margin-bottom: 10px;">
+			<input type="submit" name="registro" class="btn btn-outline-primary" value="Registrase" style="margin-top: 10px;margin-bottom: 10px;">
+
+				
+		</form>
+
+
+	</center>
+	
 
 	
 	  

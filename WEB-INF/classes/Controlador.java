@@ -114,6 +114,32 @@ public class Controlador extends HttpServlet {
 
         
         
+      }else if (request.getParameter("view") != null){
+
+        // Obtenemos el carrito de la sesion
+        Carro temp = (Carro)session.getAttribute("carro");
+
+        //Si el carrito no existe, lo creamos
+        if (temp == null) {
+          temp = new Carro();
+      }
+
+        if (temp.getCompra().size() == 0) {
+          // almacenar el carrito actualizado
+          session.setAttribute("carro", null);
+
+          //Vamos a una pagina donde indiquemos que el contenido del carrito esta vacio
+          gotoPage("/jsp/Vacio.jsp", request, response);
+
+        } else {
+          // almacenar el carrito actualizado
+          session.setAttribute("carro", temp);
+
+          //Volvemos a la página en la que estabamos
+          gotoPage("/jsp/Carrito.jsp", request, response);
+        }
+
+
       }
 
   
