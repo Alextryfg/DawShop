@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Carro {
 
   private ArrayList<Producto> compra = new ArrayList<>();
+  private Float precioTotal = new Float(0);
 
     public void setNum() {
 
@@ -41,6 +42,14 @@ public class Carro {
 
     public void setCompra(ArrayList<Producto> compra) {
         this.compra = compra;
+    }
+
+    public void setPrecioTotal(Float precioTotal) {
+        this.precioTotal = precioTotal;
+    }
+
+    public float getPrecioTotal() {
+        return this.precioTotal;
     }
 
 }

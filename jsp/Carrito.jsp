@@ -43,14 +43,15 @@
             <input type="hidden" name="itemId" value="${item.id}"/> <!-- o value="${item.num}" si corresponde-->
             <td><bd><input type="submit" name="delete" class="btn btn-danger" value="delete"></bd></td> 
         </tr>
-        <c:set var="total" value="${total + item.precioMult}" />
+        <c:set var="total" value="${total + item.precioMult}"/>
         </c:forEach>
         </form>
     </tbody>
 </table>
 
 <c:set var="formattedTotal" value="${String.format('%.2f', total)}" />
-<p><strong>Precio Total :  <c:out value="${formattedTotal}" /></strong></p>
+<p><strong>Precio Total :  <c:out value="${formattedTotal}"/></strong></p>
+
 
 <form action="formularioUsers" method="post"> 
 

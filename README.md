@@ -7,3 +7,6 @@ archivos .java para que genere los .classes.
 
 A veces para que se actualice del todo la página hace falta apagar el tomcat y volverlo
 a iniciar, no tengo idea de porque.
+
+Seria bueno almacenar PrecioTotal en la variable de carro, pero no se muy bien como hacerlo
+con jstl.

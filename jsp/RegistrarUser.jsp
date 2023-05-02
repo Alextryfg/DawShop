@@ -26,24 +26,24 @@
 
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label"></label>
-        <input type="text" class="form-control"placeholder="Nombre de Usuario">
+        <input type="text" name="username" class="form-control"placeholder="Nombre de Usuario">
     </div>
     <div class="mb-3">
         <label for="formGroupExampleInput2" class="form-label"></label>
-        <input type="text" class="form-control"placeholder="Correo">
+        <input type="text" name="correo" class="form-control"placeholder="Correo">
     </div>
-    <select class="form-select" aria-label="Default select example">
+    <select class="form-select" name="tipoTarjeta" aria-label="Default select example">
         <label for="form-select" class="form-label">Tipo de Tarjeta</label>
         <option value="Visa">Visa</option>
         <option value="MasterCard">MasterCard</option>
     </select>
     <div class="mb-3">
         <label for="formGroupExampleInput2" class="form-label"></label>
-        <input type="text" class="form-control"placeholder="Password">
+        <input type="text" name="password" class="form-control"placeholder="Password">
     </div>
 
 
-    <input type="submit" name="registro" class="btn btn-outline-primary" value="Registrase" style="margin-top: 10px;margin-bottom: 10px;">
+    <input type="submit" name="confirmarRegistro" class="btn btn-outline-primary" value="Registrase" style="margin-top: 10px;margin-bottom: 10px;">
     <button type="submit" name="inicioSesion" class="btn btn-primary">Volver a Inicio de Sesion</button><p>
         
     <a href="index.html"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
