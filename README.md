@@ -10,3 +10,5 @@ a iniciar, no tengo idea de porque.
 
 Seria bueno almacenar PrecioTotal en la variable de carro, pero no se muy bien como hacerlo
 con jstl.
+
+Comano Compilacion: javac Controlador.java Producto.java formularioUsers.java BaseDatos.java Carro.java Pedidos.java Users.java

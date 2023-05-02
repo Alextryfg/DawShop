@@ -53,8 +53,14 @@ public class formularioUsers extends HttpServlet {
 
     }else if (request.getParameter("inicioSesion") != null){
 
-        //Vamos a la página donde se comenzará el inicio de sesion
-        gotoPage("/jsp/IniciarUser.jsp", request, response);
+        //Si ya tenemos la sesion iniciada, vamos a la pagina de compra directamente
+        if(session.getAttribute("usuario") != null){
+          gotoPage("/jsp/CompraRealizada.jsp", request, response);
+
+        }else{ //En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
+          gotoPage("/jsp/IniciarUser.jsp", request, response);
+        }
+        
 
     }else if (request.getParameter("confirmarRegistro") != null){
 
@@ -67,11 +73,56 @@ public class formularioUsers extends HttpServlet {
       //Creamos el usuario a insertar en la Base de Datos
       Users user = new Users(username, correo, tipoTarjeta,password);
 
-      //A continuacion, mediante las funciones especificadas en BaseDatos, se inyecta en la BD
-      bd.insertarUsuario(user);
+      if(bd.existeUsuario(correo) == true){
+        request.setAttribute("error", "Ya existe el usuario en la Base de Datos!!!");
+        gotoPage("/jsp/RegistrarUser.jsp", request, response);
+      }else{
+        //A continuacion, mediante las funciones especificadas en BaseDatos, se inyecta en la BD
+        bd.insertarUsuario(user);
 
-      //Vamos a la página donde se comenzará el inicio de sesion
-      gotoPage("/jsp/IniciarUser.jsp", request, response);
+        //Vamos a la página donde se comenzará el inicio de sesion
+        gotoPage("/jsp/IniciarUser.jsp", request, response);
+
+      }
+
+      
+
+    }else if(request.getParameter("confirmarInicioSesion") != null){
+
+        //Obtenemos los datos del formulario
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String correo = request.getParameter("correo");
+
+        //Creamos el usuario a insertar en la Base de Datos
+        Users user = new Users(username, password,correo);
+
+        //Comprobamos si existe el usuario en la BD
+        if(bd.existeUsuario(user.getCorreoUser()) == false){
+            request.setAttribute("error", "No existe el usuario en la Base de Datos!!!");
+            gotoPage("/jsp/IniciarUser.jsp", request, response);
+        }else{
+
+            //Creamos el atributo sesion para mantenerlo iniciado durante toda la sesion //Esto TIENE QUE SER LA CLAVE PRINCIPAL DE LA TABLA
+            session.setAttribute("usuario", correo);
+            session.setAttribute("username", username);
+            //Vamos a la pagina final donde se confirmará la compra y se muestra la informacion
+            gotoPage("/jsp/CompraRealizada.jsp", request, response);
+        }
+
+
+    }else if(request.getParameter("finalCompra") != null){
+
+          //Seteo el carro y la compra a null ya que la compra ya fue realizada
+          Carro c = new Carro();
+
+          //Se vacia el carrito
+
+          session.setAttribute("carro", c);
+          session.setAttribute("compra", c.getCompra());
+
+          gotoPage("/index.html", request, response);
+
 
     }
 

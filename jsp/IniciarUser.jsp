@@ -24,14 +24,23 @@
 <h4>Introduzca sus credenciales para acceder a su cuenta!</h4>
 
 <form action="formularioUsers" method = "post">
+
+  <p><strong><font color="#F24638"><c:out value="${error}"></c:out></font></strong></p>
+
+
     <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label"></label>
-        <input type="text" class="form-control"placeholder="Nombre de Usuario">
+        <input type="text" name="username" class="form-control"placeholder="Nombre de Usuario">
+      </div>
+      <div class="mb-3">
+        <label for="formGroupExampleInput" class="form-label"></label>
+        <input type="text" name="correo" class="form-control"placeholder="Correo Electronico">
       </div>
       <div class="mb-3">
         <label for="formGroupExampleInput2" class="form-label"></label>
-        <input type="text" class="form-control"placeholder="Password">
+        <input type="text" name="password" class="form-control"placeholder="Password">
       </div>
+      
 
       <h4> Si todavia no tiene una cuenta, registrese pulsando el boton!</h4>
 

@@ -14,6 +14,14 @@ public class Users {
 
     }
 
+    public Users(String nombreUser, String passwordUser, String correoUser){
+            
+        this.nombreUser = nombreUser;
+        this.passwordUser = passwordUser;
+        this.correoUser = correoUser;
+    
+    }
+
     public String getNombreUser(){
         return this.nombreUser;
     }

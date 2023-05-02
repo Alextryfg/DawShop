@@ -99,7 +99,7 @@ public class BaseDatos {
 
       resultado = rs.next();
     } catch (SQLException e) {
-     
+		return false;
     }
 
     return resultado;
@@ -147,7 +147,7 @@ public class BaseDatos {
         
       }
     } catch (SQLException e) {
-      
+	  Logger.getLogger(query).log(Level.SEVERE, "Error al iniciarSesion en la BD", e);
     }
 
     // devuelve el usuario si los datos son correctos
