@@ -24,9 +24,12 @@ public class BaseDatos {
         String password = "12345";
 
         connection = DriverManager.getConnection(URL, username, password);
+
+		//Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, "cONEXION CON LA BD EXITOSA");
+
       }
     } catch (Exception e) {
-      Logger.getLogger(query).log(Level.SEVERE, "Error al conectar con la base de datos", e);
+      Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, "Fallo al iniciar la conexion con la BD", e);
     }
 	
   }
@@ -61,7 +64,7 @@ public class BaseDatos {
     // alamcena pedido en DB
     ps = null;
 
-    query = "INSERT INTO pedidos (nombre,correo,tipoTarjeta,numeroTarjeta,precioTotal) VALUES(?,?,?,?,?)";
+    query = "INSERT INTO pedidos (nombre,correo,tipotarjeta,numerotarjeta,preciototal) VALUES(?,?,?,?,?)";
 
     try {
       ps = connection.prepareStatement(query);
@@ -86,7 +89,7 @@ public class BaseDatos {
   public boolean existeUsuario(String correo) {
     boolean resultado = true;
 
-    query = "SELECT * FROM usuarios WHERE correoUser =?";
+    query = "SELECT * FROM usuarios WHERE correouser =?";
 
     try {
       ps = connection.prepareStatement(query);
@@ -106,7 +109,7 @@ public class BaseDatos {
   public boolean insertarUsuario(Users u) {
     ps = null;
 
-    query = "INSERT INTO usuarios (nombreUser,correoUser,numeroTarjetaUser,passwordUser) VALUES(?,?,?,?)";
+    query = "INSERT INTO usuarios (nombreuser,correouser,numerotarjetauser,passworduser) VALUES(?,?,?,?)";
 
     try {
       ps = connection.prepareStatement(query);
@@ -120,7 +123,7 @@ public class BaseDatos {
 
       return true;
     } catch (SQLException e) {
-	  Logger.getLogger(query).log(Level.SEVERE, "Error al conectar con la base de datos", e);
+	  Logger.getLogger(query).log(Level.SEVERE, "Error al insertarUsuario en la BD", e);
       return false;
     }
   }
@@ -128,7 +131,7 @@ public class BaseDatos {
   public Users iniciarSesion(Users u) {
     Users resultado = null;
 
-    query = "SELECT * FROM usuarios WHERE correoUser=? and passwordUser=?";
+    query = "SELECT * FROM usuarios WHERE correouser=? and passworduser=?";
 
     
 
@@ -140,7 +143,7 @@ public class BaseDatos {
       rs = ps.executeQuery();
 
       if (rs.next()) {
-        resultado = new Users(rs.getString("nombreUser"), rs.getString("correoUser"), rs.getString("numeroTarjetaUser"), rs.getString("passwordUser"));
+        resultado = new Users(rs.getString("nombreuser"), rs.getString("correouser"), rs.getString("numerotarjetauser"), rs.getString("passworduser"));
         
       }
     } catch (SQLException e) {
