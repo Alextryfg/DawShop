@@ -32,8 +32,20 @@ public class Carro {
 
             //Se añade el producto al carrito
             this.compra.add(p);
+            actualizarPrecioTotal();
         }
             
+    }
+
+    public void actualizarPrecioTotal() {
+        float total=(float)0.0;
+
+        //Se actualiza el precio total del carrito
+        this.precioTotal = new Float(0);
+        for(Producto producto: compra){
+            total += producto.getPrecioMult();
+        }
+        setPrecioTotal(total);
     }
 
     public ArrayList<Producto> getCompra() {

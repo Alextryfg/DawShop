@@ -3,16 +3,16 @@ public class Pedidos {
     //Esta clase almacenará los pedidos con un id y el resto de datos del comprador, mas un importe final de la compra
     
     private String id;
-    private String nombre;
+    private String correoUser;
     private String tipoTarjeta;
     private String numTarjeta;
     private String precioTotal;
 
     //El constructor para crear el pedido actual
 
-    public Pedidos(String id, String nombre, String tipoTarjeta, String numTarjeta, String precioTotal) {
+    public Pedidos(String id, String correoUser, String tipoTarjeta, String numTarjeta, String precioTotal) {
         this.id = id;
-        this.nombre = nombre;
+        this.correoUser = correoUser;
         this.tipoTarjeta = tipoTarjeta;
         this.numTarjeta = numTarjeta;
         this.precioTotal = precioTotal;
@@ -24,8 +24,8 @@ public class Pedidos {
         return this.id;
     }
 
-    public String getNombre() {
-        return this.nombre;
+    public String getCorreoUser() {
+        return this.correoUser;
     }
 
     public String getTipoTarjeta() {
@@ -44,8 +44,8 @@ public class Pedidos {
         this.id = id;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre= nombre;
+    public void setCorreoUser(String nombre) {
+        this.correoUser= nombre;
     }
 
     public void setTipoTarjeta(String tipoTarjeta) {

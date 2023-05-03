@@ -41,7 +41,11 @@
     </select>
     <div class="mb-3">
         <label for="formGroupExampleInput2" class="form-label"></label>
-        <input type="text" name="password" class="form-control"placeholder="Password">
+        <input type="text" name="numeroTarjeta" class="form-control"placeholder="Numero de Tarjeta">
+    </div>
+    <div class="mb-3">
+        <label for="formGroupExampleInput2" class="form-label"></label>
+        <input type="password" name="password" class="form-control"placeholder="Password">
     </div>
 
 

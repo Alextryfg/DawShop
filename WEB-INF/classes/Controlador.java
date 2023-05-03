@@ -80,7 +80,6 @@ public class Controlador extends HttpServlet {
           session.setAttribute("carro", temp);
 
 
-
           //Redireccionamos a la pagina de carrito
           gotoPage("/jsp/Carrito.jsp", request, response);
 

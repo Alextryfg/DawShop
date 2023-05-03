@@ -53,13 +53,6 @@ public class formularioUsers extends HttpServlet {
 
     }else if (request.getParameter("inicioSesion") != null){
 
-        //Si ya tenemos la sesion iniciada, vamos a la pagina de compra directamente
-        /*if(session.getAttribute("usuario") != null){
-          gotoPage("/jsp/IniciarUser.jsp", request, response);
-
-        }else{ //En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
-          gotoPage("/jsp/IniciarUser.jsp", request, response);
-        }*/
         gotoPage("/jsp/IniciarUser.jsp", request, response);
 
     }else if (request.getParameter("confirmarRegistro") != null){
@@ -69,9 +62,10 @@ public class formularioUsers extends HttpServlet {
       String password = request.getParameter("password");
       String correo = request.getParameter("correo");
       String tipoTarjeta = request.getParameter("tipoTarjeta");
+      String numeroTarjeta = request.getParameter("numeroTarjeta");
 
       //Creamos el usuario a insertar en la Base de Datos
-      Users user = new Users(username, correo, tipoTarjeta,password);
+      Users user = new Users(username, correo, tipoTarjeta, numeroTarjeta, password);
 
       if(bd.existeUsuario(correo) == true){
         request.setAttribute("error", "Ya existe el usuario en la Base de Datos!!!");
@@ -98,7 +92,7 @@ public class formularioUsers extends HttpServlet {
         Users user = new Users(username, password,correo);
 
         //Comprobamos si existe el usuario en la BD
-        if(bd.existeUsuario(user.getCorreoUser()) == false){
+        if(bd.existeUsuario(user.getCorreo()) == false){
             request.setAttribute("error", "No existe el usuario en la Base de Datos!!!");
             gotoPage("/jsp/IniciarUser.jsp", request, response);
         }else{
@@ -137,7 +131,21 @@ public class formularioUsers extends HttpServlet {
 
       //Si ya tenemos la sesion iniciada, vamos a la pagina de compra directamente
       if(session.getAttribute("usuario") != null){
+        
+        String username = (String) session.getAttribute("username");
+        Carro carro = (Carro) session.getAttribute("carro");
+
+        ///acceder bdd para los datos
+        Users usuario = bd.recuperarDatosUsuario(username);
+        //comprobar pedidos pa la mierda esta del codigo
+        Pedidos ped = new Pedidos(Integer.toString(bd.calcularIdentificador(usuario.getCorreo())), usuario.getCorreo(),"VISA", usuario.getNumeroTarjeta(), Float.toString(carro.getPrecioTotal()));
+        bd.insertarPedido(ped);
         gotoPage("/jsp/CompraRealizada.jsp", request, response);
+
+        ArrayList<Pedidos> lista = new ArrayList<Pedidos>();
+        lista = bd.pedidosUsuario(username);
+
+        request.setAttribute("lista", lista);
 
       }else{ //En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
         gotoPage("/jsp/IniciarUser.jsp", request, response);
@@ -147,14 +155,11 @@ public class formularioUsers extends HttpServlet {
 
       session.setAttribute("usuario", null);
       session.setAttribute("username", null);
+      Carro c = new Carro();
+      session.setAttribute("carro", c);
       
       gotoPage("/index.jsp", request, response);
 
-
-    }
-
-  
-
+    }  
   }
-
 }

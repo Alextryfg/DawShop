@@ -59,6 +59,11 @@
     <input type="submit" name="finalCompra" class="btn btn-outline-primary" value="Volver al inicio" style="margin-top: 10px;margin-bottom: 10px;"><p>
 </form>
 
+<h3>Listado de Pedidos del usuario</h3>
+<c:forEach var="item" items="${lista}">
+    <p>Pedido: ${item}</p>
+</c:forEach>
+
 
 <!--Pruebas-->
 </center> 

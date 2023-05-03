@@ -1,57 +1,68 @@
 public class Users {
 
-    private String nombreUser;
-    private String correoUser;
-    private String numeroTarjetaUser;
-    private String passwordUser;
+    private String nombre;
+    private String correo;
+    private String numeroTarjeta;
+    private String tipoTarjeta;
+    private String password;
 
-    public Users(String nombreUser, String correoUser, String numeroTarjetaUser, String passwordUser){
+    public Users(String nombre, String correo, String tipoTarjeta, String numeroTarjeta, String password){
 
-        this.nombreUser = nombreUser;
-        this.correoUser = correoUser;
-        this.numeroTarjetaUser = numeroTarjetaUser;
-        this.passwordUser = passwordUser;
+        this.nombre = nombre;
+        this.correo = correo;
+        this.tipoTarjeta = tipoTarjeta;
+        this.numeroTarjeta = numeroTarjeta;
+        this.password = password;
 
     }
 
-    public Users(String nombreUser, String passwordUser, String correoUser){
+    public Users(String nombre, String password, String correo){ //creo que sobra!!!!!!!!!!!!!!!!!!!!!!!!!!!
             
-        this.nombreUser = nombreUser;
-        this.passwordUser = passwordUser;
-        this.correoUser = correoUser;
+        this.nombre = nombre;
+        this.password = password;
+        this.correo = correo;
     
     }
 
-    public String getNombreUser(){
-        return this.nombreUser;
+    public String getNombre(){
+        return this.nombre;
     }
 
-    public String getCorreoUser(){
-        return this.correoUser;
+    public String getCorreo(){
+        return this.correo;
     }
 
-    public String getNumeroTarjetaUser(){
-        return this.numeroTarjetaUser;
+    public String getNumeroTarjeta(){
+        return this.numeroTarjeta;
     }
 
-    public void setNombreUser(String nombreUser){
-        this.nombreUser = nombreUser;
+    public String getTipoTarjeta(){
+        return this.tipoTarjeta;
     }
 
-    public void setCorreoUser(String correoUser){
-        this.correoUser = correoUser;
+    public void setNombre(String nombre){
+        this.nombre = nombre;
     }
 
-    public void setNumeroTarjetaUser(String numeroTarjetaUser){
-        this.numeroTarjetaUser = numeroTarjetaUser;
+    public void setCorreo(String correo){
+        this.correo = correo;
     }
 
-    public String getPasswordUser(){
-        return this.passwordUser;
+    public void setNumeroTarjeta(String numeroTarjeta){
+        this.numeroTarjeta = numeroTarjeta;
     }
 
-    public void setPasswordUser(String passwordUser){
-        this.passwordUser = passwordUser;
+    
+    public void setTipoTarjeta(String tipoTarjeta){
+        this.tipoTarjeta=tipoTarjeta;
+    }
+
+    public String getPassword(){
+        return this.password;
+    }
+
+    public void setPassword(String passwordUser){
+        this.password = passwordUser;
     }
     
 }
