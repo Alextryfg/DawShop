@@ -14,15 +14,15 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 
-
-
-
-	<script>
-	document.addEventListener('DOMContentLoaded', function() {
-		var cerrarSesionInput = document.getElementById('cerrarSes');
-		
-	  });
-	</script>
+	
+		<script>
+		  window.onbeforeunload = function() {
+			var xhr = new XMLHttpRequest();
+			xhr.open('POST', 'logout.jsp', false);
+			xhr.send();
+		  };
+		</script>
+	  
 
 </head>
 
@@ -80,7 +80,6 @@
         <c:if test="${not empty usuario}">
         <p>Sesion iniciada con el usuario <strong><c:out value="${username}"/></strong></p>
         <form id="formulariologout" action="formularioUsers" method="post">
-		<input type="hidden" name="cerrarSes" id="cerrarSes" value="true">
         <input type="submit" name="cerrarSesion" class="btn btn-outline-primary" value="Cerrar Sesion" style="margin-top: 10px;margin-bottom: 10px;">
         </form>
         </c:if>
