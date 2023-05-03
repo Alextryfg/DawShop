@@ -14,7 +14,21 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 
-    </head>
+
+
+
+	<script>
+	document.addEventListener('DOMContentLoaded', function() {
+		var cerrarSesionInput = document.getElementById('cerrarSes');
+		
+	  });
+	</script>
+
+</head>
+
+
+
+
 <body>
       
 	<table align="center" border="0">
@@ -64,8 +78,9 @@
 
         <!--En caso contrario, muestro el contenido de la variable-->
         <c:if test="${not empty usuario}">
-        <p>Sesion iniciada con el usuario <c:out value="${username}"/></p>
-        <form action="formularioUsers" method="post">
+        <p>Sesion iniciada con el usuario <strong><c:out value="${username}"/></strong></p>
+        <form id="formulariologout" action="formularioUsers" method="post">
+		<input type="hidden" name="cerrarSes" id="cerrarSes" value="true">
         <input type="submit" name="cerrarSesion" class="btn btn-outline-primary" value="Cerrar Sesion" style="margin-top: 10px;margin-bottom: 10px;">
         </form>
         </c:if>
@@ -73,9 +88,6 @@
 
 
 	</center>
-	
-
-	
 	  
 
     </body>

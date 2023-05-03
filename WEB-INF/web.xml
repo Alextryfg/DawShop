@@ -26,5 +26,12 @@ PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
  <url-pattern>/formularioUsers</url-pattern>
  </servlet-mapping>
 
+ <session-config>
+   <cookie-config>
+      <name>MYSESSIONID</name>
+      <max-age>-1</max-age>
+   </cookie-config>
+</session-config>
+
 </web-app>
 

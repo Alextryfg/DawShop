@@ -113,9 +113,9 @@ public class formularioUsers extends HttpServlet {
             }
             //if(!temp.getCompra().isEmpty()){
             if (temp.getCompra().size() != 0) {
-              gotoPage("/jsp/CompraRealizada.jsp", request, response);
+              gotoPage("/jsp/Carrito.jsp", request, response);
             }else{
-              gotoPage("/jsp/Vacio.jsp", request, response);
+              gotoPage("/index.jsp", request, response);
             }
         }
 

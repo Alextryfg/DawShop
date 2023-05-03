@@ -37,6 +37,13 @@ public class Controlador extends HttpServlet {
 
   // Generamos un objeto sesion
   HttpSession session = request.getSession(true);
+  /*HttpSession session = request.getSession(false);
+  if(session == null) {
+      session = request.getSession(true);
+      session.setAttribute("usuario", null);
+      session.setAttribute("username", null);
+  }*/
+
 
   // Generamos un objeto para el contexto de la aplicacion
   ServletContext context = getServletContext();
