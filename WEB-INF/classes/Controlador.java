@@ -16,6 +16,7 @@ public class Controlador extends HttpServlet {
     // Creamos objeto RequestDispatcher
     RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(address);
     dispatcher.forward(request, response);
+    
   }
 
   // Aquí van los métodos doPost y doGet para procesar las peticiones.
@@ -79,9 +80,10 @@ public class Controlador extends HttpServlet {
 
           session.setAttribute("carro", temp);
 
-
           //Redireccionamos a la pagina de carrito
-          gotoPage("/jsp/Carrito.jsp", request, response);
+          gotoPage("/jsp/intermedia.html", request, response);
+          
+          //gotoPage("/jsp/Carrito.jsp", request, response);
 
       }else if (request.getParameter("delete") != null ) {
 
@@ -115,7 +117,7 @@ public class Controlador extends HttpServlet {
           session.setAttribute("carro", temp);
 
           //Volvemos a la página en la que estabamos
-          gotoPage("/jsp/Carrito.jsp", request, response);
+          gotoPage("/jsp/intermedia.html", request, response);
         }
 
         
@@ -142,7 +144,7 @@ public class Controlador extends HttpServlet {
           session.setAttribute("carro", temp);
 
           //Volvemos a la página en la que estabamos
-          gotoPage("/jsp/Carrito.jsp", request, response);
+          gotoPage("/jsp/intermedia.html", request, response);
         }
 
 

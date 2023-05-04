@@ -20,36 +20,33 @@
 
 <!--Indico que el carrito no tiene ningun objeto-->
 
-<H1>Introduzca los Datos para registrarse y Confirmar su compra</H1>
+<H1>Introduzca los Datos para registrarse</H1>
 
 <form  action="formularioUsers" method = "post">
 
     <p><strong><font color="#F24638"><c:out value="${error}"></c:out></font></strong></p>
 
     <div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label"></label>
-        <input type="text" name="username" class="form-control"placeholder="Nombre de Usuario">
+        <input type="text" name="username" class="form-control"placeholder="Nombre de Usuario" pattern="[a-zA-Z ,.'-]{3,48}" title="Debe tener entre 3 y 48 letras" required/>
     </div>
     <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label"></label>
-        <input type="text" name="correo" class="form-control"placeholder="Correo">
-    </div>
-    <select class="form-select" name="tipoTarjeta" aria-label="Default select example">
-        <label for="form-select" class="form-label">Tipo de Tarjeta</label>
-        <option value="Visa">Visa</option>
-        <option value="MasterCard">MasterCard</option>
-    </select>
-    <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label"></label>
-        <input type="text" name="numeroTarjeta" class="form-control"placeholder="Numero de Tarjeta">
+        <input type="email" name="correo" class="form-control"placeholder="Correo" title="Debe ser un correo valido" required/>
     </div>
     <div class="mb-3">
-        <label for="formGroupExampleInput2" class="form-label"></label>
-        <input type="password" name="password" class="form-control"placeholder="Password">
+        <select class="form-select" name="tipoTarjeta" aria-label="Default select example">
+            <option value="Visa">Visa</option>
+            <option value="MasterCard">MasterCard</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <input type="text" name="numeroTarjeta" class="form-control" placeholder="Numero de Tarjeta" pattern="[0-9]{10,20}" title="Debe tener entre 10 y 20 digitos" required/>
+    </div>
+    <div class="mb-3">
+        <input type="password" name="password" class="form-control" placeholder="Password" pattern="(?=.*\d)(?=.*[A-Z]).{8,}" title="Debe tener al menos 8 caracteres, una mayuscula y un numero" required/>
     </div>
 
 
-    <input type="submit" name="confirmarRegistro" class="btn btn-outline-primary" value="Registrase" style="margin-top: 10px;margin-bottom: 10px;">
+    <input type="submit" name="confirmarRegistro" class="btn btn-outline-primary" value="Registrarse" style="margin-top: 10px;margin-bottom: 10px;">
     <button type="submit" name="inicioSesion" class="btn btn-primary">Volver a Inicio de Sesion</button><p>
         
     <a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>

@@ -11,7 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
     <!-- La hoja de estilo a utilizar -->
     <link rel="stylesheet" type="text/css" href="css/style.css">
-
 </head>
 <body>
 
@@ -32,7 +31,7 @@
         </tr>
     </thead>
     <tbody>
-        <form action="Controlador" method="post">
+        <form action="../Controlador" method="post">
         <c:forEach items="${compra}" var="item" varStatus="loop">
         <tr>
             <th scope="row"><c:out value="${item.num}"/></th>
@@ -49,17 +48,18 @@
     </tbody>
 </table>
 
-<c:set var="formattedTotal" value="${String.format('%.2f', total)}" />
-<p><strong>Precio Total :  <c:out value="${formattedTotal}"/></strong></p>
+<c:if test="${not empty carro}">
+    <c:set var="formattedTotal" value="${String.format('%.2f', total)}" />
+    <p><strong>Precio Total :  <c:out value="${formattedTotal}"/></strong></p>
+</c:if>
+<!--No consigo que me lo pille vacio-->
 
+<form action="../formularioUsers" method="post"> 
 
-<form action="formularioUsers" method="post"> 
-
-    <a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+    <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
     <input type="submit" name ="pagar" class="btn btn-outline-primary" value="Pagar">
 
 </form>
-
 
 <!--Pruebas-->
 </center> 

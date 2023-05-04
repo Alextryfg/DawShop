@@ -48,8 +48,6 @@ public class formularioUsers extends HttpServlet {
         //Vamos a la página donde se comenzará el registro del usuario
         gotoPage("/jsp/RegistrarUser.jsp", request, response);
 
-        
-
 
     }else if (request.getParameter("inicioSesion") != null){
 
@@ -68,15 +66,26 @@ public class formularioUsers extends HttpServlet {
       Users user = new Users(username, correo, tipoTarjeta, numeroTarjeta, password);
 
       if(bd.existeUsuario(correo) == true){
-        request.setAttribute("error", "Ya existe el usuario en la Base de Datos!!!");
+        request.setAttribute("error", "Ya existe un usuario con ese correo!!!");
         gotoPage("/jsp/RegistrarUser.jsp", request, response);
       }else{
         //A continuacion, mediante las funciones especificadas en BaseDatos, se inyecta en la BD
         bd.insertarUsuario(user);
 
-        //Vamos a la página donde se comenzará el inicio de sesion
-        gotoPage("/jsp/IniciarUser.jsp", request, response);
+        //Creamos el atributo sesion para mantenerlo iniciado durante toda la sesion //Esto TIENE QUE SER LA CLAVE PRINCIPAL DE LA TABLA
+        session.setAttribute("usuario", user.getCorreo());
+        session.setAttribute("username", user.getNombre());
+        
+        Carro temp = (Carro)session.getAttribute("carro");
+        if(temp==null){
+          temp = new Carro();
+        }
 
+        if (temp.getCompra().size() != 0) {
+          gotoPage("/jsp/intermedia.html", request, response);
+        }else{
+          gotoPage("/index.jsp", request, response);
+        }
       }
 
       
@@ -84,22 +93,20 @@ public class formularioUsers extends HttpServlet {
     }else if(request.getParameter("confirmarInicioSesion") != null){
 
         //Obtenemos los datos del formulario
-        String username = request.getParameter("username");
+        //String username = request.getParameter("username");
         String password = request.getParameter("password");
         String correo = request.getParameter("correo");
 
-        //Creamos el usuario a insertar en la Base de Datos
-        Users user = new Users(username, password,correo);
-
         //Comprobamos si existe el usuario en la BD
-        if(bd.existeUsuario(user.getCorreo()) == false){
-            request.setAttribute("error", "No existe el usuario en la Base de Datos!!!");
+        if(bd.existeUsuario(correo) == false){
+            request.setAttribute("error", "No existe un usuario con ese correo!!!");
             gotoPage("/jsp/IniciarUser.jsp", request, response);
         }else{
-
+          Users a = bd.recuperarDatosUsuario(correo);
+          if(a.getPassword().equals(password)){
             //Creamos el atributo sesion para mantenerlo iniciado durante toda la sesion //Esto TIENE QUE SER LA CLAVE PRINCIPAL DE LA TABLA
             session.setAttribute("usuario", correo);
-            session.setAttribute("username", username);
+            session.setAttribute("username", a.getNombre());
             //Vamos a la pagina final donde se confirmará la compra y se muestra la informacion
             Carro temp = (Carro)session.getAttribute("carro");
             if(temp==null){
@@ -107,10 +114,15 @@ public class formularioUsers extends HttpServlet {
             }
             //if(!temp.getCompra().isEmpty()){
             if (temp.getCompra().size() != 0) {
-              gotoPage("/jsp/Carrito.jsp", request, response);
+              gotoPage("/jsp/intermedia.html", request, response);
             }else{
               gotoPage("/index.jsp", request, response);
             }
+          }
+          else{
+            request.setAttribute("error", "Password incorrecto!!!");
+            gotoPage("/jsp/IniciarUser.jsp", request, response);
+          }
         }
 
 
@@ -138,14 +150,9 @@ public class formularioUsers extends HttpServlet {
         ///acceder bdd para los datos
         Users usuario = bd.recuperarDatosUsuario(username);
         //comprobar pedidos pa la mierda esta del codigo
-        Pedidos ped = new Pedidos(Integer.toString(bd.calcularIdentificador(usuario.getCorreo())), usuario.getCorreo(),"VISA", usuario.getNumeroTarjeta(), Float.toString(carro.getPrecioTotal()));
+        Pedidos ped = new Pedidos(Integer.toString(bd.calcularIdentificador()), usuario.getCorreo(), Float.toString(carro.getPrecioTotal()));
         bd.insertarPedido(ped);
         gotoPage("/jsp/CompraRealizada.jsp", request, response);
-
-        ArrayList<Pedidos> lista = new ArrayList<Pedidos>();
-        lista = bd.pedidosUsuario(username);
-
-        request.setAttribute("lista", lista);
 
       }else{ //En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
         gotoPage("/jsp/IniciarUser.jsp", request, response);
@@ -161,5 +168,14 @@ public class formularioUsers extends HttpServlet {
       gotoPage("/index.jsp", request, response);
 
     }  
+
+    else if(request.getParameter("verPedidos") != null){
+      String usuario = (String) session.getAttribute("usuario");
+      ArrayList<Pedidos> list = new ArrayList<Pedidos>();
+      list = bd.pedidosUsuario(usuario);
+      
+      request.setAttribute("lista", list);
+      gotoPage("/jsp/Pedidos.jsp", request, response);
+    }
   }
 }

@@ -16,14 +16,6 @@ public class Users {
 
     }
 
-    public Users(String nombre, String password, String correo){ //creo que sobra!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            
-        this.nombre = nombre;
-        this.password = password;
-        this.correo = correo;
-    
-    }
-
     public String getNombre(){
         return this.nombre;
     }

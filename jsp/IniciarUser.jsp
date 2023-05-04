@@ -28,24 +28,30 @@
   <p><strong><font color="#F24638"><c:out value="${error}"></c:out></font></strong></p>
 
 
-    <div class="mb-3">
+    <!--<div class="mb-3">
         <label for="formGroupExampleInput" class="form-label"></label>
         <input type="text" name="username" class="form-control"placeholder="Nombre de Usuario">
-      </div>
+      </div>-->
       <div class="mb-3">
         <label for="formGroupExampleInput" class="form-label"></label>
-        <input type="text" name="correo" class="form-control"placeholder="Correo Electronico">
+        <input type="text" name="correo" class="form-control"placeholder="Correo Electronico" required />
       </div>
       <div class="mb-3">
         <label for="formGroupExampleInput2" class="form-label"></label>
-        <input type="text" name="password" class="form-control"placeholder="Password">
+        <input type="password" name="password" class="form-control"placeholder="Password">
       </div>
+      <!--<div class="mb-3">
+        <input type="email" name="correo" class="form-control"placeholder="Correo" title="Debe ser un correo valido" required/>
+      </div>
+      <div class="mb-3">
+        <input type="password" name="password" class="form-control" placeholder="Password" pattern="(?=.*\d)(?=.*[A-Z]).{8,}" title="Debe tener al menos 8 caracteres, una mayuscula y un numero" required/>
+      </div>-->
       
 
       <h4> Si todavia no tiene una cuenta, registrese pulsando el boton!</h4>
 
     <button type="submit" name="confirmarInicioSesion" class="btn btn-primary">Iniciar Sesion</button>
-    <input type="submit" name="registro" class="btn btn-outline-primary" value="Registrase" style="margin-top: 10px;margin-bottom: 10px;"><p>
+    <input type="submit" name="registro" class="btn btn-outline-primary" value="Registrarse" style="margin-top: 10px;margin-bottom: 10px;"><p>
     
     <a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
     

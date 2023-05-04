@@ -2,7 +2,7 @@
 <%@ page isELIgnored="false" %>
 <%@page session="true" %>
 
-
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -50,7 +50,7 @@
 		<b>Cantidad:</b>
 		<input type="text" name="cantidad" value="1"><p>
 		  
-		<input type="submit" name ="seleccion" class="btn btn-success" value="Producto a carrito" style="margin-top: 10px;margin-bottom: 10px;">
+		<input type="submit" name ="seleccion" id="seleccion" class="btn btn-success" value="Producto a carrito" style="margin-top: 10px;margin-bottom: 10px;">
 		<input type="submit" name="view" class="btn btn-success" value="Ver carrito" style="margin-top: 10px;margin-bottom: 10px;">		
 
 	    </form>
@@ -63,7 +63,7 @@
             <form action="formularioUsers" method="post">
             <th><font face="Times New Roman,Times" size="+3">Inicia Sesion o Registrate!</font></th><p></p>
             <input type="submit" name="inicioSesion" class="btn btn-outline-primary" value="Iniciar Sesion" style="margin-top: 10px;margin-bottom: 10px;">
-            <input type="submit" name="registro" class="btn btn-outline-primary" value="Registrase" style="margin-top: 10px;margin-bottom: 10px;">
+            <input type="submit" name="registro" class="btn btn-outline-primary" value="Registrarse" style="margin-top: 10px;margin-bottom: 10px;">
             </form>
         </c:if>
 
@@ -71,19 +71,16 @@
         <c:if test="${not empty usuario}">
 			<p>Sesion iniciada con el usuario <strong><c:out value="${username}"/></strong></p>
 			<form id="formulariologout" action="formularioUsers" method="post">
+			<input type="submit" name="verPedidos" class="btn btn-success" value="Ver Pedidos" style="margin-top: 10px;margin-bottom: 10px;">
 			<input type="submit" name="cerrarSesion" class="btn btn-outline-primary" value="Cerrar Sesion" style="margin-top: 10px;margin-bottom: 10px;">
+				
 			</form>
         </c:if>
 
-		<h3>Listado de Pedidos del usuario</h3>
-		<c:forEach var="item" items="${lista}">
-			<p>Pedido: ${item.getId}</p>
-		</c:forEach>
-              
 
 
 	</center>
 	  
 
-    </body>
+	
 </html>

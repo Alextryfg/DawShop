@@ -66,18 +66,15 @@ public class BaseDatos {
     // alamcena pedido en DB
     ps = null;
 
-    query = "INSERT INTO pedidos (correouser,tipotarjeta,numerotarjetauser,identificador,preciototal) VALUES(?,?,?,?,?)";
-    //query = "INSERT INTO usuarios (nombre,direccioncorreo,numerotarjeta,password) VALUES(?,?,?,?)";
+    query = "INSERT INTO pedidos (correouser,identificador,preciototal) VALUES(?,?,?)";
     try {
       ps = connection.prepareStatement(query);
 
       
       
       ps.setString(1, p.getCorreoUser());
-      ps.setString(2, p.getTipoTarjeta());
-      ps.setString(3, p.getNumTarjeta());
-      ps.setString(4, p.getId());
-      ps.setString(5, p.getPrecioTotal());
+      ps.setInt(2, Integer.parseInt(p.getId()));
+      ps.setString(3, p.getPrecioTotal());
 
       ps.executeUpdate();
 
@@ -143,7 +140,7 @@ public class BaseDatos {
       rs = ps.executeQuery();
 
       while (rs.next()) {
-        resultado.add(new Pedidos(rs.getString("correouser"), rs.getString("tipotarjeta"), rs.getString("numerotarjetauser"), rs.getString("identificador"), rs.getString("preciototal")));
+        resultado.add(new Pedidos(rs.getString("identificador"), rs.getString("correouser"), rs.getString("preciototal")));
         
       }
     } catch (SQLException e) {
@@ -153,37 +150,12 @@ public class BaseDatos {
     return resultado;
 
   }
-/*
-  public ArrayList<String> pedidosUsuario(String nombre){
 
-    ArrayList<String> resultado = new ArrayList<String>();
-    query = "SELECT * FROM pedidos WHERE correouser =?";
-
-    try {
-      ps = connection.prepareStatement(query);
-      ps.setString(1, nombre);
-
-      rs = ps.executeQuery();
-
-      while (rs.next()) {
-        //resultado.add(new Pedidos(rs.getString("correouser"), rs.getString("tipotarjeta"), rs.getString("numerotarjetauser"), rs.getString("identificador"), rs.getString("preciototal")));
-        resultado.add(rs.getString("identificador"));
-      }
-    } catch (SQLException e) {
-      Logger.getLogger(query).log(Level.SEVERE, "Error al recuperar los pedidos del usuario", e);
-    }
-
-    return resultado;
-
-  }
-*/
-  public int calcularIdentificador(String correo){
+  public int calcularIdentificador(){
     int resultado = 1;
-    query = "SELECT * FROM pedidos WHERE correouser = ? AND identificador = (SELECT MAX(identificador) FROM pedidos WHERE correouser = ?)";
+    query = "SELECT * FROM pedidos WHERE identificador = (SELECT MAX(identificador) FROM pedidos)";
     try {
-      ps = connection.prepareStatement(query);
-      ps.setString(1, correo);
-      ps.setString(2, correo);
+      ps = connection.prepareStatement(query);//??????????????????????????????????????????
 
       rs = ps.executeQuery();
 
