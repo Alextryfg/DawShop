@@ -8,9 +8,6 @@ public class BaseDatos {
   private ResultSet rs;
   private PreparedStatement ps;
   private String query;
-	
-	
-	
 
 
   public void iniciarConexion() {
