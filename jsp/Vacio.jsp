@@ -25,7 +25,7 @@
 <!-- El precio Total será de 0 -->
 <c:set var="total" value="0" />
 
-<img src="https://letrasrecortadas.com/carritoVacio.png" height="450" width="450">
+<img src="<%=request.getContextPath()%>/img/carritovacio.png" height="450" width="450">
 
 <p><strong>Precio Total :  <c:out value="${total}"/></strong></p>
     

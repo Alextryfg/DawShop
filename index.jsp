@@ -1,7 +1,6 @@
 <%-- Minitienda --%>
 <%@ page isELIgnored="false" %>
 <%@page session="true" %>
-
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
@@ -13,23 +12,29 @@
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
 	<!-- La hoja de estilo a utilizar -->
-	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="./css/style.css">
 
 </head>
-
-
-
-
 <body>
-      
-	<table align="center" border="0">
-		<!--User: admin Password: 1234 TOMCAT-->
-		<tr> 
-		<th><img src="" ALIGN="center"></th>
-		<th><font face="Times New Roman,Times" size="+3">Musica para DAA</font></th>
-		<th><img src="" ALIGN="center"></th>
-		</tr>
-    </table>
+
+	<h1>Como estan los makinas</h1>
+
+	 <!--Un encabezado con el logo del club a la izquierda-->
+	 <header class="container-fluid">
+        <div class="row">
+          
+          <div class="col-md-4  mt-4">
+            <figure>
+                <img src="./img/itunes.png" alt="Tienda" width="60" height="60" class="icon">
+            </figure> 
+          </div>
+          <div class="col-md-4 align-self-center">
+            <table align="center" border="0">
+				<th><font face="Times New Roman,Times" size="+3">Musica para DAA</font></th>
+			</table>
+          </div>
+        </div>
+    </header>
     <hr>
 	<center>
 		
@@ -69,16 +74,21 @@
 
         <!--En caso contrario, muestro el contenido de la variable-->
         <c:if test="${not empty usuario}">
-			<p>Sesion iniciada con el usuario <strong><c:out value="${username}"/></strong></p>
+			<div class="col-md-4 align-self-center">
+				<figure>
+					<img src="./img/usuario.png" alt="Active User" width="60" height="60" class="icon" >
+				</figure> 
+				<c:if test="${not empty usuario}">
+						<p><strong>user: <c:out value="${username}"/></strong></p>
+				</c:if>
+			  </div>
 			<form id="formulariologout" action="formularioUsers" method="post">
 			<input type="submit" name="verPedidos" class="btn btn-success" value="Ver Pedidos" style="margin-top: 10px;margin-bottom: 10px;">
 			<input type="submit" name="cerrarSesion" class="btn btn-outline-primary" value="Cerrar Sesion" style="margin-top: 10px;margin-bottom: 10px;">
 				
 			</form>
         </c:if>
-
-
-
+		
 	</center>
 	  
 
