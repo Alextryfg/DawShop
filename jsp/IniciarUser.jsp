@@ -23,7 +23,7 @@
 <H1>Formulario de Inicio de sesion!</H1>
 <h4>Introduzca sus credenciales para acceder a su cuenta!</h4>
 
-<form action="formularioUsers" method = "post">
+<form action="Controlador" method = "post">
 
   <p><strong><font color="#F24638"><c:out value="${error}"></c:out></font></strong></p>
 

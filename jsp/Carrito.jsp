@@ -16,6 +16,8 @@
 
 <center> 
 
+<c:if test="${not empty carro}">
+
 <H1>Carrito</H1>
 
 <c:set var="total" value="0" />
@@ -48,18 +50,33 @@
     </tbody>
 </table>
 
-<c:if test="${not empty carro}">
+<!---hay que ponerlo con otherwise-->
+
     <c:set var="formattedTotal" value="${String.format('%.2f', total)}" />
     <p><strong>Precio Total :  <c:out value="${formattedTotal}"/></strong></p>
+
+    <form action="../Controlador" method="post"> 
+
+        <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+        <input type="submit" name ="pagar" class="btn btn-outline-primary" value="Pagar">
+    
+    </form>
+</c:if>
+<c:if test="${empty carro}">
+    <H1>El carrito se encuentra vacio!</H1>
+
+    <!-- El precio Total será de 0 -->
+    <c:set var="total" value="0" />
+
+    <img src="../img/carritovacio.png" height="450" width="450">
+
+    <p><strong>Precio Total :  <c:out value="${total}"/></strong></p>
+        
+    <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
 </c:if>
 <!--No consigo que me lo pille vacio-->
 
-<form action="../formularioUsers" method="post"> 
 
-    <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
-    <input type="submit" name ="pagar" class="btn btn-outline-primary" value="Pagar">
-
-</form>
 
 <!--Pruebas-->
 </center> 
