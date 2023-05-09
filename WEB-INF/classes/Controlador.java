@@ -6,6 +6,7 @@ import org.omg.CORBA.SystemException;
 import org.omg.PortableInterceptor.ForwardRequest;
 
 import java.io.*;
+import java.net.URLEncoder;
 
 public class Controlador extends HttpServlet {
 
@@ -17,7 +18,7 @@ public class Controlador extends HttpServlet {
     bd = new BaseDatos();
     bd.iniciarConexion();
   }
-  
+
   //Metodo convencional goToPage para redireccionar a una pagina JSP o HTML y pasarle la request y la response
   //Request lo que le pides a la pagina, response es la respuesta. dispatcher permite cambiar de pagina sin perder la request y la response
   //es decir, es como un mecanismo de redireccionamiento que te lleva a la página que quieras.
@@ -90,7 +91,10 @@ public class Controlador extends HttpServlet {
           session.setAttribute("carro", temp);
 
           //Redireccionamos a la pagina de carrito
-          gotoPage("/jsp/intermedia.html", request, response);
+          String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+          request.setAttribute("url", url);
+          gotoPage("/jsp/intermedia.jsp", request, response);
+          //gotoPage("/jsp/intermedia.html", request, response);
           
           //gotoPage("/jsp/Carrito.jsp", request, response);
 
@@ -123,7 +127,9 @@ public class Controlador extends HttpServlet {
 
         }//Volvemos a la página en la que estabamos
         
-        gotoPage("/jsp/intermedia.html", request, response);
+        String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+          request.setAttribute("url", url);
+          gotoPage("/jsp/intermedia.jsp", request, response);
         
 
         
@@ -146,7 +152,9 @@ public class Controlador extends HttpServlet {
           session.setAttribute("carro", temp);
         }
         //Volvemos a la página en la que estabamos
-        gotoPage("/jsp/intermedia.html", request, response);
+        String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+          request.setAttribute("url", url);
+          gotoPage("/jsp/intermedia.jsp", request, response);
 
       }
 
@@ -189,7 +197,9 @@ public class Controlador extends HttpServlet {
         }
 
         if (temp.getCompra().size() != 0) {
-          gotoPage("/jsp/intermedia.html", request, response);
+          String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+          request.setAttribute("url", url);
+          gotoPage("/jsp/intermedia.jsp", request, response);
         }else{
           gotoPage("/index.jsp", request, response);
         }
@@ -221,7 +231,9 @@ public class Controlador extends HttpServlet {
             }
             //if(!temp.getCompra().isEmpty()){
             if (temp.getCompra().size() != 0) {
-              gotoPage("/jsp/intermedia.html", request, response);
+              String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+              request.setAttribute("url", url);
+              gotoPage("/jsp/intermedia.jsp", request, response);
             }else{
               gotoPage("/index.jsp", request, response);
             }

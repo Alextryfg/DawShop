@@ -1,7 +1,10 @@
+<%
+String url = (String)request.getAttribute("url");
+%>
 <!DOCTYPE html>
 <html>
 <head>
-  <meta http-equiv="refresh" content="0; URL=http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp">
+  <meta http-equiv="refresh" content="0; URL=<%=url%>">
 </head>
 <body>
   <h1>Procesando...</h1>
