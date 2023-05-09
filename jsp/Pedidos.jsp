@@ -30,7 +30,7 @@
 
 <form action="../Controlador" method="post" style="margin-top: 1em;"> 
 
-    <a href="index.jsp"><button type="button" class="btn btn-success">Volver atras</button></a>
+    <a href="../index.jsp"><button type="button" class="btn btn-success">Volver atras</button></a>
     
 
 </form>

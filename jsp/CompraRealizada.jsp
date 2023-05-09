@@ -37,7 +37,7 @@
         </tr>
     </thead>
     <tbody>
-        <form action="Controlador" method="post">
+        <form action="../Controlador" method="post">
         <c:forEach items="${compra}" var="item" varStatus="loop">
         <tr>
             <th scope="row"><c:out value="${item.num}"/></th>
@@ -55,7 +55,7 @@
 <p><strong>Precio Pagado : <c:out value="${formattedTotal}"/></strong></p>
 
 <!--Boton para volver a la página inicial-->
-<form action="Controlador" method = "post">
+<form action="../Controlador" method = "post">
     <input type="submit" name="finalCompra" class="btn btn-outline-primary" value="Volver al inicio" style="margin-top: 10px;margin-bottom: 10px;"><p>
 </form>
 

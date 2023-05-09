@@ -94,9 +94,7 @@ public class Controlador extends HttpServlet {
           String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
           request.setAttribute("url", url);
           gotoPage("/jsp/intermedia.jsp", request, response);
-          //gotoPage("/jsp/intermedia.html", request, response);
-          
-          //gotoPage("/jsp/Carrito.jsp", request, response);
+
 
       }else if (request.getParameter("delete") != null ) {
 
@@ -104,34 +102,38 @@ public class Controlador extends HttpServlet {
         String idRemove = request.getParameter("itemId");
         
         // Obtenemos el carrito de la sesion
-        Carro temp = (Carro)session.getAttribute("carro");
+        Carro temp = null;
+        if (session.getAttribute("carro") != null) {
+            temp = (Carro) session.getAttribute("carro");
+        }
 
         // Obtenemos el numero de disco a partir de la peticion
 
         // Eliminamos el disco correspondiente
-        for(Producto p: temp.getCompra()){
-          if(p.getId().equals(idRemove)){
-            temp.getCompra().remove(p);
-            break;
+        if(temp != null){
+          for(Producto p: temp.getCompra()){
+            if(p.getId().equals(idRemove)){
+              temp.getCompra().remove(p);
+              break;
+            }
           }
-        }
+        
           
-        //Comprobamos si el carrito esta vacio
+          //Comprobamos si el carrito esta vacio
 
-        if (temp.getCompra().size() == 0) {
-          // almacenar el carrito actualizado
-          session.setAttribute("carro", null);
-        } else {
-          // almacenar el carrito actualizado
-          session.setAttribute("carro", temp);
+          if (temp.getCompra().size() == 0) {
+            // almacenar el carrito actualizado
+            session.setAttribute("carro", null);
+          } else {
+            // almacenar el carrito actualizado
+            session.setAttribute("carro", temp);
 
-        }//Volvemos a la página en la que estabamos
-        
+          }
+          
+        }
         String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
-          request.setAttribute("url", url);
-          gotoPage("/jsp/intermedia.jsp", request, response);
-        
-
+        request.setAttribute("url", url);
+        gotoPage("/jsp/intermedia.jsp", request, response);
         
         
       }else if (request.getParameter("view") != null){
@@ -161,12 +163,17 @@ public class Controlador extends HttpServlet {
       else if (request.getParameter("registro") != null ) {
 
         //Vamos a la página donde se comenzará el registro del usuario
-        gotoPage("/jsp/RegistrarUser.jsp", request, response);
+        String url = "http://localhost:8080/Tienda_Daw/jsp/RegistrarUser.jsp";
+          request.setAttribute("url", url);
+          gotoPage("/jsp/intermedia.jsp", request, response);
+        //gotoPage("/jsp/RegistrarUser.jsp", request, response);   cambia formato!!!!!!!!!!!!!!!!!!
 
 
     }else if (request.getParameter("inicioSesion") != null){
-
-        gotoPage("/jsp/IniciarUser.jsp", request, response);
+      String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
+          request.setAttribute("url", url);
+          gotoPage("/jsp/intermedia.jsp", request, response);
+        //gotoPage("/jsp/IniciarUser.jsp", request, response);
 
     }else if (request.getParameter("confirmarRegistro") != null){
 
@@ -201,7 +208,10 @@ public class Controlador extends HttpServlet {
           request.setAttribute("url", url);
           gotoPage("/jsp/intermedia.jsp", request, response);
         }else{
-          gotoPage("/index.jsp", request, response);
+          
+          String url = "http://localhost:8080/Tienda_Daw/index.jsp";
+          request.setAttribute("url", url);
+          gotoPage("/jsp/intermedia.jsp", request, response);
         }
       }
 
@@ -217,7 +227,9 @@ public class Controlador extends HttpServlet {
         //Comprobamos si existe el usuario en la BD
         if(bd.existeUsuario(correo) == false){
             request.setAttribute("error", "No existe un usuario con ese correo!!!");
-            gotoPage("/jsp/IniciarUser.jsp", request, response);
+            String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
+            request.setAttribute("url", url);
+            gotoPage("/jsp/intermedia.jsp", request, response);
         }else{
           Users a = bd.recuperarDatosUsuario(correo);
           if(a.getPassword().equals(password)){
@@ -235,12 +247,16 @@ public class Controlador extends HttpServlet {
               request.setAttribute("url", url);
               gotoPage("/jsp/intermedia.jsp", request, response);
             }else{
-              gotoPage("/index.jsp", request, response);
+              String url = "http://localhost:8080/Tienda_Daw/index.jsp";
+              request.setAttribute("url", url);
+              gotoPage("/jsp/intermedia.jsp", request, response);
             }
           }
           else{
             request.setAttribute("error", "Password incorrecto!!!");
-            gotoPage("/jsp/IniciarUser.jsp", request, response);
+            String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
+            request.setAttribute("url", url);
+            gotoPage("/jsp/intermedia.jsp", request, response);
           }
         }
 
@@ -254,8 +270,10 @@ public class Controlador extends HttpServlet {
 
           session.setAttribute("carro", c);
           session.setAttribute("compra", c.getCompra());
-
-          gotoPage("/index.jsp", request, response);
+          
+          String url = "http://localhost:8080/Tienda_Daw/index.jsp";
+          request.setAttribute("url", url);
+          gotoPage("/jsp/intermedia.jsp", request, response);
 
 
     }else if (request.getParameter("pagar") != null){
@@ -271,10 +289,14 @@ public class Controlador extends HttpServlet {
         //comprobar pedidos pa la mierda esta del codigo
         Pedidos ped = new Pedidos(Integer.toString(bd.calcularIdentificador()), usuario.getCorreo(), Float.toString(carro.getPrecioTotal()));
         bd.insertarPedido(ped);
-        gotoPage("/jsp/CompraRealizada.jsp", request, response);
+        String url = "http://localhost:8080/Tienda_Daw/jsp/CompraRealizada.jsp";
+        request.setAttribute("url", url);
+        gotoPage("/jsp/intermedia.jsp", request, response);
 
       }else{ //En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
-        gotoPage("/jsp/IniciarUser.jsp", request, response);
+        String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
+        request.setAttribute("url", url);
+        gotoPage("/jsp/intermedia.jsp", request, response);
       }
 
     }else if (request.getParameter("cerrarSesion") != null){
@@ -284,7 +306,9 @@ public class Controlador extends HttpServlet {
       Carro c = new Carro();
       session.setAttribute("carro", c);
       
-      gotoPage("/index.jsp", request, response);
+      String url = "http://localhost:8080/Tienda_Daw/index.jsp";
+      request.setAttribute("url", url);
+      gotoPage("/jsp/intermedia.jsp", request, response);
 
     }  
 
@@ -294,7 +318,9 @@ public class Controlador extends HttpServlet {
       list = bd.pedidosUsuario(usuario);
       
       request.setAttribute("lista", list);
-      gotoPage("/jsp/Pedidos.jsp", request, response);
+      String url = "http://localhost:8080/Tienda_Daw/jsp/Pedidos.jsp";
+      request.setAttribute("url", url);
+      gotoPage("/jsp/intermedia.jsp", request, response);
     }
   
 

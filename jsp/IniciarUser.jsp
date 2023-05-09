@@ -23,7 +23,7 @@
 <H1>Formulario de Inicio de sesion!</H1>
 <h4>Introduzca sus credenciales para acceder a su cuenta!</h4>
 
-<form action="Controlador" method = "post">
+<form action="../Controlador" method = "post">
 
   <p><strong><font color="#F24638"><c:out value="${error}"></c:out></font></strong></p>
 
@@ -46,7 +46,7 @@
     <button type="submit" name="confirmarInicioSesion" class="btn btn-primary">Iniciar Sesion</button>
     
     
-    <a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+    <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
     
   </form>
 

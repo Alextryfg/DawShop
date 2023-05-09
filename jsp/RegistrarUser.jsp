@@ -22,7 +22,7 @@
 
 <H1>Introduzca los Datos para registrarse</H1>
 
-<form  action="Controlador" method = "post">
+<form  action="../Controlador" method = "post">
 
     <p><strong><font color="#F24638"><c:out value="${error}"></c:out></font></strong></p>
 
@@ -52,9 +52,9 @@
 
 </form>
 
-<form action="Controlador" method = "post">
+<form action="../Controlador" method = "post">
     <button type="submit" class="btn btn-primary" name="inicioSesion">Dirigirse a Inicio de Sesion</button>
-    <a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+    <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
 </form>
 
 
