@@ -74,7 +74,7 @@
         <c:if test="${not empty usuario}">
 			<div class="col-md-4 align-self-center">
 				<figure>
-					<img src="./img/usuario.png" alt="Active User" width="60" height="60" class="icon" >
+					<img src="./img/usuario.png" alt="Active User" width="60" height="60" >
 				</figure> 
 				<c:if test="${not empty usuario}">
 						<p><strong>user: <c:out value="${username}"/></strong></p>

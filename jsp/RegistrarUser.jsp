@@ -46,12 +46,17 @@
     </div>
 
 
-    <input type="submit" name="confirmarRegistro" class="btn btn-outline-primary" value="Registrarse" style="margin-top: 10px;margin-bottom: 10px;">
-    <button type="submit" name="inicioSesion" class="btn btn-primary">Volver a Inicio de Sesion</button><p>
-        
-    <a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+    <input type="submit" name="confirmarRegistro" class="btn btn-outline-primary" value="Registrarse" style="margin-top: 10px;margin-bottom: 10px;"/>
+    
+    
 
 </form>
+
+<form action="formularioUsers" method = "post">
+    <button type="submit" class="btn btn-primary" name="inicioSesion">Dirigirse a Inicio de Sesion</button>
+    <a href="index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+</form>
+
 
 <!--Pruebas-->
 </center> 

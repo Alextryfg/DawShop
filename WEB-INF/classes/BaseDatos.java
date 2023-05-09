@@ -103,13 +103,13 @@ public class BaseDatos {
     return resultado;
   }
 
-  public Users recuperarDatosUsuario(String nombre){
+  public Users recuperarDatosUsuario(String correo){
     Users resultado = null;
-    query = "SELECT * FROM usuarios WHERE nombre =?";
+    query = "SELECT * FROM usuarios WHERE direccioncorreo =?";
 
     try {
       ps = connection.prepareStatement(query);
-      ps.setString(1, nombre);
+      ps.setString(1, correo);
 
       rs = ps.executeQuery();
 

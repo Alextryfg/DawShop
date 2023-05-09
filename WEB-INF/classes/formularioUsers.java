@@ -104,7 +104,7 @@ public class formularioUsers extends HttpServlet {
         }else{
           Users a = bd.recuperarDatosUsuario(correo);
           if(a.getPassword().equals(password)){
-            //Creamos el atributo sesion para mantenerlo iniciado durante toda la sesion //Esto TIENE QUE SER LA CLAVE PRINCIPAL DE LA TABLA
+            //Creamos el atributo sesion para mantenerlo iniciado durante toda la sesion
             session.setAttribute("usuario", correo);
             session.setAttribute("username", a.getNombre());
             //Vamos a la pagina final donde se confirmará la compra y se muestra la informacion
@@ -144,11 +144,11 @@ public class formularioUsers extends HttpServlet {
       //Si ya tenemos la sesion iniciada, vamos a la pagina de compra directamente
       if(session.getAttribute("usuario") != null){
         
-        String username = (String) session.getAttribute("username");
+        String user = (String) session.getAttribute("usuario");
         Carro carro = (Carro) session.getAttribute("carro");
 
         ///acceder bdd para los datos
-        Users usuario = bd.recuperarDatosUsuario(username);
+        Users usuario = bd.recuperarDatosUsuario(user);
         //comprobar pedidos pa la mierda esta del codigo
         Pedidos ped = new Pedidos(Integer.toString(bd.calcularIdentificador()), usuario.getCorreo(), Float.toString(carro.getPrecioTotal()));
         bd.insertarPedido(ped);
