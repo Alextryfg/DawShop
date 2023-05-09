@@ -191,7 +191,7 @@ public class BaseDatos {
     }
   }
 
-  public Users iniciarSesion(Users u) {
+  /*public Users iniciarSesion(Users u) {
     Users resultado = null;
 
     query = "SELECT * FROM usuarios WHERE direccioncorreo=? and password=?";
@@ -215,6 +215,6 @@ public class BaseDatos {
 
     // devuelve el usuario si los datos son correctos
     return resultado;
-  }
+  }*/
 
 }
