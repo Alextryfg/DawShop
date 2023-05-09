@@ -17,8 +17,6 @@
 </head>
 <body>
 
-	<h1>Como estan los makinas</h1>
-
 	 <!--Un encabezado con el logo del club a la izquierda-->
 	 <header class="container-fluid">
         <div class="row">
