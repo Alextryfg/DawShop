@@ -13,9 +13,9 @@
 </head>
 <body>
   <center>
-  <div class="spinner-border text-dark" role="status">
-    <span class="sr-only"></span>
-  </div>
+    <div class="spinner-border text-dark" role="status">
+      <span class="sr-only"></span>
+    </div>
   </center>
 </body>
 </html>
