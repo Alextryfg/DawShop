@@ -33,20 +33,19 @@
             <c:set var="total" value="0" />
 
             <!--Tabla que indicará los elementos de nuestro carrito, con indice , cantidad, id e importe, ademas de un boton para eliminar-->
-            
-            <form action="../Controlador" method="post" style="margin-bottom: 2em;">
-                <table class="table table-dark">
 
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Titulo del Disco y Autor</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Importe</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Titulo del Disco y Autor</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Importe</th>
+                        <th scope="col" class="text-center align-middle"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <form action="../Controlador" method="post">
                         <c:forEach items="${compra}" var="item" varStatus="loop">
                             <tr>
                                 <th scope="row">
@@ -56,32 +55,23 @@
                                     <c:out value="${item.id}" />
                                 </td>
                                 <td>
-                                    <div class="input-group">
-                                        <input type="text" id="cantidad-${item.cantidad}" name="cantidad" value="${item.cantidad}" >
-                                        <input type="button" id="btn-menos-${item.cantidad}" class="btn btn-danger" value="-" onclick="decrementarCantidad(${item.cantidad})">
-                                        <input type="hidden" name="itemId" value="${item.id}" />
-                                        <input type="hidden" name="itemCantidad" value="${item.cantidad}" />
-                                        <input type="reset" class="btn btn-secondary" value="DESHACER">
-                                        <input type="submit" name="delete" class="btn btn-danger" value="GUARDAR">
-                                    </div>
+                                    <c:out value="${item.cantidad}" />
                                 </td>
                                 <td>
                                     <c:out value="${item.precioMult}" />
                                 </td>
                                 <!--Utilizo un campo oculto, aunque se podria hacer de varias otras formas-->
-                                
+                                <input type="hidden" name="itemId" value="${item.id}" />
                                 <!-- o value="${item.num}" si corresponde-->
-
-
+                                <td><input type="submit" name="delete" class="btn btn-danger"
+                                        value="-"><input type="submit" name="delete"
+                                        class="btn btn-danger" value="+"></td>
                             </tr>
                             <c:set var="total" value="${total + item.precioMult}" />
                         </c:forEach>
-
-                    </tbody>
-
-                </table>
-                
-            </form>
+                    </form>
+                </tbody>
+            </table>
 
             <!--Muestro el importe total del carrito-->
 
@@ -93,7 +83,8 @@
             <!--Botones de vuelta al index-->
 
             <form action="../Controlador" method="post">
-                <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
+                <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir
+                        Comprando</button></a>
                 <input type="submit" name="pagar" class="btn btn-outline-primary" value="Pagar">
             </form>
         </c:if>
@@ -119,17 +110,5 @@
 
     </center>
 </body>
-
-<script>
-    function decrementarCantidad(num) {
-        var campoCantidad = document.getElementById("cantidad-" + num);
-        var cantidad = parseInt(campoCantidad.value);
-        cantidad -= 1;
-        if (cantidad < 0) {
-            cantidad = 0;
-        }
-        campoCantidad.value = cantidad;
-    }
-</script>
 
 </html>
