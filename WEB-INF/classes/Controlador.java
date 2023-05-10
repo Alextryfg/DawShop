@@ -266,7 +266,6 @@ public class Controlador extends HttpServlet {
 
         /// acceder bdd para los datos
         Users usuario = bd.recuperarDatosUsuario(user);
-        // comprobar pedidos pa la mierda esta del codigo
         Pedidos ped = new Pedidos(Integer.toString(bd.calcularIdentificador()), usuario.getCorreo(),
           Float.toString(carro.getPrecioTotal()));
         bd.insertarPedido(ped);
