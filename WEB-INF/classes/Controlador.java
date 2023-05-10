@@ -30,8 +30,6 @@ public class Controlador extends HttpServlet {
 
   }
 
-  // Aquí van los métodos doPost y doGet para procesar las peticiones.
-
   // Manejar solicitudes Post
   public void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
@@ -119,6 +117,8 @@ public class Controlador extends HttpServlet {
         }
 
       }
+
+      //De nuevo redireccionamos y en caso de estar vacio se va a la página de vacio
       String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
       request.setAttribute("url", url);
       gotoPage("/jsp/intermedia.jsp", request, response);
@@ -153,7 +153,6 @@ public class Controlador extends HttpServlet {
       String url = "http://localhost:8080/Tienda_Daw/jsp/RegistrarUser.jsp";
       request.setAttribute("url", url);
       gotoPage("/jsp/intermedia.jsp", request, response);
-      
 
     } else if (request.getParameter("inicioSesion") != null) {
       String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
@@ -187,6 +186,8 @@ public class Controlador extends HttpServlet {
         if (temp == null) {
           temp = new Carro();
         }
+
+        //Dependiendo del contenido de carro se va a una página o a otra
 
         if (temp.getCompra().size() != 0) {
           String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
@@ -273,8 +274,7 @@ public class Controlador extends HttpServlet {
         request.setAttribute("url", url);
         gotoPage("/jsp/intermedia.jsp", request, response);
 
-      } else { // En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de
-               // inicio de sesion
+      } else { // En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
         String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
         request.setAttribute("url", url);
         gotoPage("/jsp/intermedia.jsp", request, response);
@@ -282,8 +282,13 @@ public class Controlador extends HttpServlet {
 
     } else if (request.getParameter("cerrarSesion") != null) {
 
+      //En caso de querer cerrar sesion borramos el valor de las variables de la sesion que nos guardan el nombre de usuario
+
       session.setAttribute("usuario", null);
       session.setAttribute("username", null);
+
+      //Creamos un carro vacio y redireccionamos
+
       Carro c = new Carro();
       session.setAttribute("carro", c);
 
@@ -294,6 +299,9 @@ public class Controlador extends HttpServlet {
     }
 
     else if (request.getParameter("verPedidos") != null) {
+
+      //Accedemos a los pedidos del usuario y redireccionamos a una página donde se mostraran (Pedidos.jsp)
+
       String usuario = (String) session.getAttribute("usuario");
       ArrayList<Pedidos> list = new ArrayList<Pedidos>();
       list = bd.pedidosUsuario(usuario);

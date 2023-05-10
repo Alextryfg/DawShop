@@ -80,6 +80,7 @@
 
 <!--Pruebas-->
 </center> 
-</BODY></HTML>
+</BODY>
+</HTML>
 
 

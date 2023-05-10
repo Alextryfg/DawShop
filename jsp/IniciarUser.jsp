@@ -26,13 +26,7 @@
 <form action="../Controlador" method = "post">
 
   <p><strong><font color="#F24638"><c:out value="${error}"></c:out></font></strong></p>
-
-
-    <!--<div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label"></label>
-        <input type="text" name="username" class="form-control"placeholder="Nombre de Usuario">
-      </div>-->
-
+  
   <center>
       <div class="d-flex justify-content-center"></div>
       <div class="mb-3">

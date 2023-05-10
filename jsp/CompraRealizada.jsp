@@ -60,7 +60,6 @@
 </form>
 
 
-<!--Pruebas-->
 </center> 
 </body>
 </html>

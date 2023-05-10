@@ -32,7 +32,9 @@
           </div>
         </div>
     </header>
+
     <hr>
+
 	<center>
 		
 		<form action="Controlador" method = "post">
@@ -59,7 +61,7 @@
 
 		<hr><p>
 
-            <!--Muestro el mensaje de inicio de sesion en caso de que si sea null-->
+        <!--Muestro el mensaje de inicio de sesion en caso de que si sea null-->
 
         <c:if test="${usuario eq null}">
             <form action="Controlador" method="post">
