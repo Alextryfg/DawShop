@@ -274,7 +274,7 @@ public class Controlador extends HttpServlet {
         gotoPage("/jsp/intermedia.jsp", request, response);
 
       } else { // En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
-        String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
+        String url = "http://localhost:8080/Tienda_Daw/jsp/RegistrarUser.jsp";
         request.setAttribute("url", url);
         gotoPage("/jsp/intermedia.jsp", request, response);
       }
@@ -305,7 +305,7 @@ public class Controlador extends HttpServlet {
       ArrayList<Pedidos> list = new ArrayList<Pedidos>();
       list = bd.pedidosUsuario(usuario);
 
-      request.setAttribute("lista", list);
+      session.setAttribute("lista", list);
       String url = "http://localhost:8080/Tienda_Daw/jsp/Pedidos.jsp";
       request.setAttribute("url", url);
       gotoPage("/jsp/intermedia.jsp", request, response);
