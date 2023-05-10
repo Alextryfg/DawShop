@@ -173,7 +173,6 @@ public class BaseDatos {
 
       consulta.setString(1, u.getNombre());
       consulta.setString(2, u.getCorreo());
-      //poner el numero de tarjeta, lo de abajo es el tipo
       consulta.setString(3, u.getNumeroTarjeta());
 	    consulta.setString(4, u.getPassword());
       consulta.setString(5, u.getTipoTarjeta());
