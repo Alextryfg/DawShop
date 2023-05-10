@@ -34,7 +34,7 @@
         <th scope="col">Titulo del Disco y Autor</th>
         <th scope="col">Cantidad</th>
         <th scope="col">Importe</th>
-        <th scope="col">Opcion</th>
+        <th scope="col" class="text-center align-middle"></th>
         </tr>
     </thead>
     <tbody>
@@ -47,7 +47,7 @@
             <td><c:out value="${item.precioMult}"/></td>
             <!--Utilizo un campo oculto, aunque se podria hacer de varias otras formas-->
             <input type="hidden" name="itemId" value="${item.id}"/> <!-- o value="${item.num}" si corresponde-->
-            <td><bd><input type="submit" name="delete" class="btn btn-danger" value="delete"></bd></td> 
+            <td><input type="submit" name="delete" class="btn btn-danger" value="-"><input type="submit" name="delete" class="btn btn-danger" value="+"></td> 
         </tr>
         <c:set var="total" value="${total + item.precioMult}"/>
         </c:forEach>
