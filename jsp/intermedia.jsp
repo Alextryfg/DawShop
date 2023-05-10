@@ -13,8 +13,6 @@
 </head>
 <body>
   <center>
-  <h1>Procesando...</h1>
-  <p>Por favor espera...</p>
   <div class="spinner-border text-dark" role="status">
     <span class="sr-only"></span>
   </div>
