@@ -15,12 +15,17 @@
 <body>
 
 <center> 
+<!--Si el carrito no esta vacio, se muestra lo siguiente-->
 
 <c:if test="${not empty carro}">
 
 <H1>Carrito</H1>
 
+<!--Variable que almacenara el precio total-->
+
 <c:set var="total" value="0" />
+
+<!--Tabla que indicará los elementos de nuestro carrito, con indice , cantidad, id e importe, ademas de un boton para eliminar-->
 
 <table class="table table-dark">
     <thead>
@@ -50,18 +55,22 @@
     </tbody>
 </table>
 
-<!---hay que ponerlo con otherwise-->
+    <!--Muestro el importe total del carrito-->
 
     <c:set var="formattedTotal" value="${String.format('%.2f', total)}" />
     <p><strong>Precio Total :  <c:out value="${formattedTotal}"/></strong></p>
 
-    <form action="../Controlador" method="post"> 
+    <!--Botones de vuelta al index-->
 
+    <form action="../Controlador" method="post"> 
         <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
         <input type="submit" name ="pagar" class="btn btn-outline-primary" value="Pagar">
-    
     </form>
 </c:if>
+
+
+<!--En caso de estar vacio, se le indicará al cliente-->
+
 <c:if test="${empty carro}">
     <H1>El carrito se encuentra vacio!</H1>
 
@@ -74,12 +83,9 @@
         
     <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
 </c:if>
-<!--No consigo que me lo pille vacio-->
 
-
-
-<!--Pruebas-->
 </center> 
-</BODY></HTML>
+</BODY>
+</HTML>
 
 

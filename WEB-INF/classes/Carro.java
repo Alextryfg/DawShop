@@ -12,6 +12,9 @@ public class Carro {
         }
     }
 
+
+    //Añadir un producto a nuestro carrito
+
     public void addProducto(Producto p) {
 
         //Si no es null
@@ -37,6 +40,8 @@ public class Carro {
             
     }
 
+    //Actualizacion del precio total
+
     public void actualizarPrecioTotal() {
         float total=(float)0.0;
 
@@ -47,6 +52,8 @@ public class Carro {
         }
         setPrecioTotal(total);
     }
+
+    //Getters y Setters
 
     public ArrayList<Producto> getCompra() {
         return this.compra;

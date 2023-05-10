@@ -6,6 +6,8 @@ public class Users {
     private String tipoTarjeta;
     private String password;
 
+    //Constructor
+
     public Users(String nombre, String correo, String tipoTarjeta, String numeroTarjeta, String password){
 
         this.nombre = nombre;
@@ -15,6 +17,8 @@ public class Users {
         this.password = password;
 
     }
+
+    //Getters y setters de los atributos
 
     public String getNombre(){
         return this.nombre;

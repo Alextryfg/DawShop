@@ -6,9 +6,10 @@ public class BaseDatos {
 
   private Connection connection;
   private ResultSet rs;
-  private PreparedStatement ps;
+  private PreparedStatement consulta;
   private String query;
 
+  //Metodo de inicio de conexion
 
   public void iniciarConexion() {
     try {
@@ -16,15 +17,11 @@ public class BaseDatos {
         String conector = "org.postgresql.Driver";
         Class.forName(conector).newInstance();
 
-        //String URL = "jdbc:postgresql://127.0.0.1:5432/tienda";
         String URL = "jdbc:postgresql://127.0.0.1:5432/tiendaDAW";
-        //String username = "Alex";
         String username = "alex";
         String password = "12345";
 
         connection = DriverManager.getConnection(URL, username, password);
-
-		//Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, "cONEXION CON LA BD EXITOSA");
 
       }
     } catch (Exception e) {
@@ -42,9 +39,9 @@ public class BaseDatos {
         
       }
     }
-    if (ps != null) {
+    if (consulta != null) {
       try {
-        ps.close();
+        consulta.close();
       } catch (SQLException e) {
         
       }
@@ -60,20 +57,19 @@ public class BaseDatos {
 
   // función para insertar un nuevo pedido en la base de datos
   public boolean insertarPedido(Pedidos p) {
+
     // alamcena pedido en DB
-    ps = null;
+    consulta = null;
 
     query = "INSERT INTO pedidos (correouser,identificador,preciototal) VALUES(?,?,?)";
     try {
-      ps = connection.prepareStatement(query);
+      consulta = connection.prepareStatement(query);
 
-      
-      
-      ps.setString(1, p.getCorreoUser());
-      ps.setInt(2, Integer.parseInt(p.getId()));
-      ps.setString(3, p.getPrecioTotal());
+      consulta.setString(1, p.getCorreoUser());
+      consulta.setInt(2, Integer.parseInt(p.getId()));
+      consulta.setString(3, p.getPrecioTotal());
 
-      ps.executeUpdate();
+      consulta.executeUpdate();
 
       return true;
 
@@ -90,10 +86,10 @@ public class BaseDatos {
     query = "SELECT * FROM usuarios WHERE direccioncorreo =?";
 
     try {
-      ps = connection.prepareStatement(query);
-      ps.setString(1, correo);
+      consulta = connection.prepareStatement(query);
+      consulta.setString(1, correo);
 
-      rs = ps.executeQuery();
+      rs = consulta.executeQuery();
 
       resultado = rs.next();
     } catch (SQLException e) {
@@ -108,10 +104,10 @@ public class BaseDatos {
     query = "SELECT * FROM usuarios WHERE direccioncorreo =?";
 
     try {
-      ps = connection.prepareStatement(query);
-      ps.setString(1, correo);
+      consulta = connection.prepareStatement(query);
+      consulta.setString(1, correo);
 
-      rs = ps.executeQuery();
+      rs = consulta.executeQuery();
 
       if (rs.next()) {
         resultado = new Users(rs.getString("nombre"), rs.getString("direccioncorreo"), rs.getString("tipoTarjeta"), rs.getString("numerotarjeta"), rs.getString("password"));
@@ -131,10 +127,10 @@ public class BaseDatos {
     query = "SELECT * FROM pedidos WHERE correouser =?";
 
     try {
-      ps = connection.prepareStatement(query);
-      ps.setString(1, correo);
+      consulta = connection.prepareStatement(query);
+      consulta.setString(1, correo);
 
-      rs = ps.executeQuery();
+      rs = consulta.executeQuery();
 
       while (rs.next()) {
         resultado.add(new Pedidos(rs.getString("identificador"), rs.getString("correouser"), rs.getString("preciototal")));
@@ -152,9 +148,9 @@ public class BaseDatos {
     int resultado = 1;
     query = "SELECT * FROM pedidos WHERE identificador = (SELECT MAX(identificador) FROM pedidos)";
     try {
-      ps = connection.prepareStatement(query);//??????????????????????????????????????????
+      consulta = connection.prepareStatement(query);
 
-      rs = ps.executeQuery();
+      rs = consulta.executeQuery();
 
       if (rs.next()) {
         resultado += rs.getInt("identificador");
@@ -168,21 +164,21 @@ public class BaseDatos {
 
   // función para introducir nuevos usuarios en la base de datos
   public boolean insertarUsuario(Users u) {
-    ps = null;
+    consulta = null;
 
     query = "INSERT INTO usuarios (nombre,direccioncorreo,numerotarjeta,password,tipotarjeta) VALUES(?,?,?,?,?)";
 
     try {
-      ps = connection.prepareStatement(query);
+      consulta = connection.prepareStatement(query);
 
-      ps.setString(1, u.getNombre());
-      ps.setString(2, u.getCorreo());
+      consulta.setString(1, u.getNombre());
+      consulta.setString(2, u.getCorreo());
       //poner el numero de tarjeta, lo de abajo es el tipo
-      ps.setString(3, u.getNumeroTarjeta());
-	    ps.setString(4, u.getPassword());
-      ps.setString(5, u.getTipoTarjeta());
+      consulta.setString(3, u.getNumeroTarjeta());
+	    consulta.setString(4, u.getPassword());
+      consulta.setString(5, u.getTipoTarjeta());
 
-      ps.executeUpdate();
+      consulta.executeUpdate();
 
       return true;
     } catch (SQLException e) {
@@ -190,31 +186,5 @@ public class BaseDatos {
       return false;
     }
   }
-
-  /*public Users iniciarSesion(Users u) {
-    Users resultado = null;
-
-    query = "SELECT * FROM usuarios WHERE direccioncorreo=? and password=?";
-
-    
-
-    try {
-      ps = connection.prepareStatement(query);
-      ps.setString(1, u.getCorreo());
-      ps.setString(2, u.getPassword());
-
-      rs = ps.executeQuery();
-
-      if (rs.next()) {
-        resultado = new Users(rs.getString("nombre"), rs.getString("direccioncorreo"), rs.getString("tipoTarjeta"), rs.getString("numerotarjeta"), rs.getString("password"));
-        
-      }
-    } catch (SQLException e) {
-	  Logger.getLogger(query).log(Level.SEVERE, "Error al iniciarSesion en la BD", e);
-    }
-
-    // devuelve el usuario si los datos son correctos
-    return resultado;
-  }*/
 
 }

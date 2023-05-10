@@ -51,6 +51,8 @@
     </tbody>
 </table>
 
+<!--Campos de indicacion del precio-->
+
 <c:set var="formattedTotal" value="${String.format('%.2f', total)}" />
 <p><strong>Precio Pagado : <c:out value="${formattedTotal}"/></strong></p>
 
@@ -60,7 +62,6 @@
 </form>
 
 
-<!--Pruebas-->
 </center> 
 </body>
 </html>

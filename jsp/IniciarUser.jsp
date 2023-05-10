@@ -23,15 +23,11 @@
 <H1>Formulario de Inicio de sesion!</H1>
 <h4>Introduzca sus credenciales para acceder a su cuenta!</h4>
 
+<!--Formulario de inicio de sesion-->
+
 <form action="../Controlador" method = "post">
 
   <p><strong><font color="#F24638"><c:out value="${error}"></c:out></font></strong></p>
-
-
-    <!--<div class="mb-3">
-        <label for="formGroupExampleInput" class="form-label"></label>
-        <input type="text" name="username" class="form-control"placeholder="Nombre de Usuario">
-      </div>-->
 
   <center>
       <div class="d-flex justify-content-center"></div>
@@ -44,12 +40,11 @@
     </div>
   </center>
       
+    <h4> Si todavia no tiene una cuenta, registrese pulsando el boton!</h4>
 
-      <h4> Si todavia no tiene una cuenta, registrese pulsando el boton!</h4>
+    <!--Botones de vuelta a index o submit de inicio de sesion para logearse-->
 
     <button type="submit" name="confirmarInicioSesion" class="btn btn-primary">Iniciar Sesion</button>
-    
-    
     <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
     
   </form>

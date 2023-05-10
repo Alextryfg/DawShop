@@ -22,6 +22,8 @@
 
 <H1>Introduzca los Datos para registrarse</H1>
 
+<!--Formulario de registro con la obtencion de los campos-->
+
 <form  action="../Controlador" method = "post">
 
     <p><strong><font color="#F24638"><c:out value="${error}"></c:out></font></strong></p>
@@ -52,13 +54,14 @@
 
 </form>
 
+<!--Vuelta a pagina principal o de inicio de sesion-->
+
 <form action="../Controlador" method = "post">
     <button type="submit" class="btn btn-primary" name="inicioSesion">Dirigirse a Inicio de Sesion</button>
     <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir Comprando</button></a>
 </form>
 
 
-<!--Pruebas-->
 </center> 
 </body>
 </html>
