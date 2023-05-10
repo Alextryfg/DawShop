@@ -9,6 +9,7 @@ public class BaseDatos {
   private PreparedStatement consulta;
   private String query;
 
+  //Metodo de inicio de conexion
 
   public void iniciarConexion() {
     try {

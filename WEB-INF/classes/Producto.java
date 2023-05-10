@@ -8,6 +8,8 @@ public class Producto {
     private Float precioMult;
     private Integer num; //indice del producto en el carrito
 
+    //Constructor
+
     public Producto(String ids, String cantidad) {
 
         // Recuperamos informacion del precio del CD
@@ -29,6 +31,8 @@ public class Producto {
         this.cantidad = Integer.parseInt(cantidad);
         this.precioMult = this.precio*this.cantidad;
     }
+
+    //Getters y setters
 
     public String getId() {
         return this.id;

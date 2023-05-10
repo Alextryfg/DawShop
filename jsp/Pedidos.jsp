@@ -18,6 +18,8 @@
 
 <center> 
 
+<!--Indico los pedidos que ha realizado el usuario logeado-->
+
 <h3 style="margin-top: 2em; margin-bottom: 1em;">Listado de Pedidos del usuario</h3>
 <c:forEach items="${lista}" var="item">
     <div style="border: 1px solid #ccc; padding: 10px; border-radius: 5px;">
@@ -29,10 +31,7 @@
 </c:forEach>
 
 <form action="../Controlador" method="post" style="margin-top: 1em;"> 
-
-    <a href="../index.jsp"><button type="button" class="btn btn-success">Volver atras</button></a>
-    
-
+  <a href="../index.jsp"><button type="button" class="btn btn-success">Volver atras</button></a>  
 </form>
 
 </center> 

@@ -35,6 +35,8 @@
 
     <hr>
 
+	<!--Tabla de seleccion de los productos disponibles-->
+
 	<center>
 		
 		<form action="Controlador" method = "post">
@@ -53,6 +55,8 @@
 		</select>
 		<b>Cantidad:</b>
 		<input type="text" name="cantidad" value="1"><p>
+
+		<!--Envio de formulario para enviar el pedido al carrito, o para ver el carrito actual-->
 		  
 		<input type="submit" name ="seleccion" id="seleccion" class="btn btn-success" value="Producto a carrito" style="margin-top: 10px;margin-bottom: 10px;">
 		<input type="submit" name="view" class="btn btn-success" value="Ver carrito" style="margin-top: 10px;margin-bottom: 10px;">		
@@ -90,6 +94,4 @@
 		
 	</center>
 	  
-
-	
 </html>
