@@ -93,16 +93,12 @@ public class Controlador extends HttpServlet {
       if (session.getAttribute("carro") != null) {
         temp = (Carro) session.getAttribute("carro");
       }
-
+      
       // Eliminamos el disco correspondiente
       if (temp != null) {
         for (Producto p : temp.getCompra()) {
           if (p.getId().equals(idRemove)) {
             temp.getCompra().remove(p);
-            
-            p.setCantidad(Integer.parseInt(request.getParameter("itemCantidad")));
-            if(p.getCantidad()>0)
-              temp.addProducto(p);
             break;
           }
         }

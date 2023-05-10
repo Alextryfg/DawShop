@@ -57,10 +57,12 @@
                                 </td>
                                 <td>
                                     <div class="input-group">
-                                        <input type="text" id="cantidad-${item.num}" name="cantidad" value="${item.cantidad}" >
-                                        <input type="button" id="btn-menos-${item.num}" class="btn btn-danger" value="-" onclick="decrementarCantidad(${item.num})">
+                                        <input type="text" id="cantidad-${item.cantidad}" name="cantidad" value="${item.cantidad}" >
+                                        <input type="button" id="btn-menos-${item.cantidad}" class="btn btn-danger" value="-" onclick="decrementarCantidad(${item.cantidad})">
                                         <input type="hidden" name="itemId" value="${item.id}" />
                                         <input type="hidden" name="itemCantidad" value="${item.cantidad}" />
+                                        <input type="reset" class="btn btn-secondary" value="DESHACER">
+                                        <input type="submit" name="delete" class="btn btn-danger" value="GUARDAR">
                                     </div>
                                 </td>
                                 <td>
@@ -78,8 +80,7 @@
                     </tbody>
 
                 </table>
-                <input type="reset" class="btn btn-secondary" value="DESHACER">
-                <input type="submit" name="delete" class="btn btn-danger" value="GUARDAR">
+                
             </form>
 
             <!--Muestro el importe total del carrito-->
