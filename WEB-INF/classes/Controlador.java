@@ -267,7 +267,7 @@ public class Controlador extends HttpServlet {
         Users usuario = bd.recuperarDatosUsuario(user);
         // comprobar pedidos pa la mierda esta del codigo
         Pedidos ped = new Pedidos(Integer.toString(bd.calcularIdentificador()), usuario.getCorreo(),
-            Float.toString(carro.getPrecioTotal()));
+          Float.toString(carro.getPrecioTotal()));
         bd.insertarPedido(ped);
         String url = "http://localhost:8080/Tienda_Daw/jsp/CompraRealizada.jsp";
         request.setAttribute("url", url);
