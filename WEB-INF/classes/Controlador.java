@@ -170,9 +170,9 @@ public class Controlador extends HttpServlet {
 
 
     }else if (request.getParameter("inicioSesion") != null){
-      String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
-          request.setAttribute("url", url);
-          gotoPage("/jsp/intermedia.jsp", request, response);
+        String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
+        request.setAttribute("url", url);
+        gotoPage("/jsp/intermedia.jsp", request, response);
         //gotoPage("/jsp/IniciarUser.jsp", request, response);
 
     }else if (request.getParameter("confirmarRegistro") != null){
