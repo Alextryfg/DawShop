@@ -32,13 +32,17 @@
         <label for="formGroupExampleInput" class="form-label"></label>
         <input type="text" name="username" class="form-control"placeholder="Nombre de Usuario">
       </div>-->
-      
+
+  <center>
+      <div class="d-flex justify-content-center"></div>
       <div class="mb-3">
         <input type="email" name="correo" class="form-control"placeholder="Correo" title="Debe ser un correo valido" required/>
       </div>
       <div class="mb-3">
         <input type="password" name="password" class="form-control" placeholder="Password" pattern="(?=.*\d)(?=.*[A-Z]).{8,}" title="Debe tener al menos 8 caracteres, una mayuscula y un numero" required/>
       </div>
+    </div>
+  </center>
       
 
       <h4> Si todavia no tiene una cuenta, registrese pulsando el boton!</h4>
