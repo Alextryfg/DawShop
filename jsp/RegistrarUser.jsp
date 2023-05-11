@@ -17,7 +17,7 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <!-- La hoja de estilo a utilizar -->
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 
 </head>
 
@@ -31,7 +31,7 @@
 
         <!--Formulario de registro con la obtencion de los campos-->
 
-        <form action="../Controlador" method="post">
+        <form action="./Controlador" method="post">
 
             <p><strong>
                     <font color="#F24638">
@@ -74,10 +74,10 @@
 
         <!--Vuelta a pagina principal o de inicio de sesion-->
 
-        <form action="../Controlador" method="post">
+        <form action="./Controlador" method="post">
             <button type="submit" class="btn btn-primary" name="inicioSesion">Dirigirse a Inicio de
                 Sesion</button>
-            <a href="../index.jsp"><button type="button" class="btn btn-success">Seguir
+            <a href="./index.jsp"><button type="button" class="btn btn-success">Seguir
                     Comprando</button></a>
         </form>
 

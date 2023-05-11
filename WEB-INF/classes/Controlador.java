@@ -43,7 +43,7 @@ public class Controlador extends HttpServlet {
 
     // Generamos un objeto sesion
     HttpSession session = request.getSession(true);
-    
+
     // Ejecutamos en funcion de la accion del usuario
     if (request.getParameter("seleccion") != null) {
 
@@ -77,7 +77,7 @@ public class Controlador extends HttpServlet {
       session.setAttribute("carro", temp);
 
       // Redireccionamos a la pagina de carrito
-      String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+      String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/Carrito.jsp";
       request.setAttribute("url", url);
       gotoPage("/jsp/intermedia.jsp", request, response);
 
@@ -125,7 +125,7 @@ public class Controlador extends HttpServlet {
       }
 
       //De nuevo redireccionamos y en caso de estar vacio se va a la página de vacio
-      String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+      String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/Carrito.jsp";
       request.setAttribute("url", url);
       gotoPage("/jsp/intermedia.jsp", request, response);
 
@@ -147,7 +147,7 @@ public class Controlador extends HttpServlet {
         session.setAttribute("carro", temp);
       }
       // Volvemos a la página en la que estabamos
-      String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+      String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/Carrito.jsp";
       request.setAttribute("url", url);
       gotoPage("/jsp/intermedia.jsp", request, response);
 
@@ -156,14 +156,14 @@ public class Controlador extends HttpServlet {
     else if (request.getParameter("registro") != null) {
 
       // Vamos a la página donde se comenzará el registro del usuario
-      String url = "http://localhost:8080/Tienda_Daw/jsp/RegistrarUser.jsp";
+      String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/RegistrarUser.jsp";
       request.setAttribute("url", url);
-      gotoPage("/jsp/intermedia.jsp", request, response);
+      gotoPage("/jsp/RegistrarUser.jsp", request, response);
 
     } else if (request.getParameter("inicioSesion") != null) {
-      String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
+      String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/IniciarUser.jsp";
       request.setAttribute("url", url);
-      gotoPage("/jsp/intermedia.jsp", request, response);
+      gotoPage("/jsp/IniciarUser.jsp", request, response);
 
     } else if (request.getParameter("confirmarRegistro") != null) {
 
@@ -179,6 +179,8 @@ public class Controlador extends HttpServlet {
 
       if (bd.existeUsuario(correo) == true) {
         request.setAttribute("error", "Ya existe un usuario con ese correo!!!");
+        String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/RegistrarUser.jsp";
+        request.setAttribute("url", url);
         gotoPage("/jsp/RegistrarUser.jsp", request, response);
       } else {
         // A continuacion, mediante las funciones especificadas en BaseDatos, se inyecta en la BD
@@ -196,12 +198,12 @@ public class Controlador extends HttpServlet {
         //Dependiendo del contenido de carro se va a una página o a otra
 
         if (temp.getCompra().size() != 0) {
-          String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+          String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/Carrito.jsp";
           request.setAttribute("url", url);
           gotoPage("/jsp/intermedia.jsp", request, response);
         } else {
 
-          String url = "http://localhost:8080/Tienda_Daw/index.jsp";
+          String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/index.jsp";
           request.setAttribute("url", url);
           gotoPage("/jsp/intermedia.jsp", request, response);
         }
@@ -216,9 +218,9 @@ public class Controlador extends HttpServlet {
       // Comprobamos si existe el usuario en la BD
       if (bd.existeUsuario(correo) == false) {
         request.setAttribute("error", "No existe un usuario con ese correo!!!");
-        String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
+        String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/IniciarUser.jsp";
         request.setAttribute("url", url);
-        gotoPage("/jsp/intermedia.jsp", request, response);
+        gotoPage("/jsp/IniciarUser.jsp", request, response);
       } else {
         Users a = bd.recuperarDatosUsuario(correo);
         if (a.getPassword().equals(password)) {
@@ -232,19 +234,19 @@ public class Controlador extends HttpServlet {
           }
           // if(!temp.getCompra().isEmpty()){
           if (temp.getCompra().size() != 0) {
-            String url = "http://localhost:8080/Tienda_Daw/jsp/Carrito.jsp";
+            String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/Carrito.jsp";
             request.setAttribute("url", url);
             gotoPage("/jsp/intermedia.jsp", request, response);
           } else {
-            String url = "http://localhost:8080/Tienda_Daw/index.jsp";
+            String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/index.jsp";
             request.setAttribute("url", url);
             gotoPage("/jsp/intermedia.jsp", request, response);
           }
         } else {
           request.setAttribute("error", "Password incorrecto!!!");
-          String url = "http://localhost:8080/Tienda_Daw/jsp/IniciarUser.jsp";
+          String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/IniciarUser.jsp";
           request.setAttribute("url", url);
-          gotoPage("/jsp/intermedia.jsp", request, response);
+          gotoPage("/jsp/IniciarUser.jsp", request, response);
         }
       }
 
@@ -258,7 +260,7 @@ public class Controlador extends HttpServlet {
       session.setAttribute("carro", c);
       session.setAttribute("compra", c.getCompra());
 
-      String url = "http://localhost:8080/Tienda_Daw/index.jsp";
+      String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/index.jsp";
       request.setAttribute("url", url);
       gotoPage("/jsp/intermedia.jsp", request, response);
 
@@ -275,14 +277,14 @@ public class Controlador extends HttpServlet {
         Pedidos ped = new Pedidos(Integer.toString(bd.calcularIdentificador()), usuario.getCorreo(),
           Float.toString(carro.getPrecioTotal()));
         bd.insertarPedido(ped);
-        String url = "http://localhost:8080/Tienda_Daw/jsp/CompraRealizada.jsp";
+        String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/CompraRealizada.jsp";
         request.setAttribute("url", url);
         gotoPage("/jsp/intermedia.jsp", request, response);
 
       } else { // En caso de que todavia no hayamos iniciado sesion, vamos a la pagina de inicio de sesion
-        String url = "http://localhost:8080/Tienda_Daw/jsp/RegistrarUser.jsp";
+        String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/RegistrarUser.jsp";
         request.setAttribute("url", url);
-        gotoPage("/jsp/intermedia.jsp", request, response);
+        gotoPage("/jsp/RegistrarUser.jsp", request, response);
       }
 
     } else if (request.getParameter("cerrarSesion") != null) {
@@ -297,7 +299,7 @@ public class Controlador extends HttpServlet {
       Carro c = new Carro();
       session.setAttribute("carro", c);
 
-      String url = "http://localhost:8080/Tienda_Daw/index.jsp";
+      String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/index.jsp";
       request.setAttribute("url", url);
       gotoPage("/jsp/intermedia.jsp", request, response);
 
@@ -312,7 +314,7 @@ public class Controlador extends HttpServlet {
       list = bd.pedidosUsuario(usuario);
 
       session.setAttribute("lista", list);
-      String url = "http://localhost:8080/Tienda_Daw/jsp/Pedidos.jsp";
+      String url = "http://localhost:8080/Tienda_CabodevilaLopez_FuentesGomez/jsp/Pedidos.jsp";
       request.setAttribute("url", url);
       gotoPage("/jsp/intermedia.jsp", request, response);
     }
