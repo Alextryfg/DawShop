@@ -18,7 +18,7 @@ public class BaseDatos {
         Class.forName(conector).newInstance();
 
         String URL = "jdbc:postgresql://127.0.0.1:5432/tiendaDAW";
-        String username = "alex";
+        String username = "alexclfg";
         String password = "12345";
 
         connection = DriverManager.getConnection(URL, username, password);
