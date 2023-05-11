@@ -86,22 +86,31 @@ public class Controlador extends HttpServlet {
 
     } else if (request.getParameter("delete") != null) {
 
-      String idRemove = request.getParameter("itemId");
-
       // Obtenemos el carrito de la sesion
       Carro temp = null;
       if (session.getAttribute("carro") != null) {
         temp = (Carro) session.getAttribute("carro");
       }
-      
+
       // Eliminamos el disco correspondiente
       if (temp != null) {
-        for (Producto p : temp.getCompra()) {
-          if (p.getId().equals(idRemove)) {
+        String[] cantidad = request.getParameterValues("itemCantidad[]");
+        for (int i=0; i<temp.getCompra().size(); i++) {
+          Producto p=temp.getCompra().get(i);
+          p.setCantidad(Integer.parseInt(cantidad[i]));
+          temp.actualizarPrecioTotal();
+          if(p.getCantidad()==0)
             temp.getCompra().remove(p);
-            break;
+          
           }
-        }
+
+          //Recolocamos los indices
+          for(int i=0; i<temp.getCompra().size(); i++){
+            Producto p = temp.getCompra().get(i);
+            p.setNum(i);
+          }
+        
+        
 
         // Comprobamos si el carrito esta vacio
 
