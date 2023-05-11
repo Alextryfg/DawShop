@@ -1,14 +1,9 @@
 # Tienda_Daw
 
-Para compilar => javac Carro.java Controlador.java Producto.java BaseDatos.java
-El base de datos aun esta muy incompleto. Hay que leer el enunciado de la P7,
-ojo con el tomcat poque cada vez que quieras actualizar hay que volver a compilar los 
-archivos .java para que genere los .classes. 
+En primer lugar será necesario ejecutar el CreacionBD.sql. Para ello, deberemos seguir los siguientes pasos en la
+aplicacion pgAdmin4.
 
-A veces para que se actualice del todo la página hace falta apagar el tomcat y volverlo
-a iniciar, no tengo idea de porque.
-
-Seria bueno almacenar PrecioTotal en la variable de carro, pero no se muy bien como hacerlo
-con jstl.
-
-Comano Compilacion: javac Controlador.java Producto.java formularioUsers.java BaseDatos.java Carro.java Pedidos.java Users.java
+1. En primer lugar se creará una Base de Datos con el nombre 'tiendaDAW'.
+2. Ahora, le daremos click derecho a la BD y pulsaremos en la opcion 'Query Tool'
+3. A continuación pegaremos el contenido de 'CreacionBD.sql' dentro de la Query Tool y ejecutaremos.
+4. La base será creada exitosamente, por lo que será posible comenzar con la ejecucion de la aplicación.
