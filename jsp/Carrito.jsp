@@ -60,8 +60,6 @@
                                         <input type="text" id="cantidad-${item.num}" name="cantidad" value="${item.cantidad}" >
                                         <input type="button" id="btn-menos-${item.cantidad}" class="btn btn-danger" value="-" onclick="decrementarCantidad(${item.num})">
                                         <input type="hidden" name="itemCantidad[]" value="${item.cantidad}" />
-                                        <input type="reset" class="btn btn-secondary" value="DESHACER">
-                                        <input type="submit" name="delete" class="btn btn-danger" value="GUARDAR">
                                     </div>
                                 </td>
                                 <td>
@@ -73,9 +71,9 @@
                         </c:forEach>
 
                     </tbody>
-
                 </table>
-                
+                <input type="reset" class="btn btn-secondary" value="DESHACER">
+                <input type="submit" name="delete" class="btn btn-danger" value="GUARDAR">
             </form>
 
             <!--Muestro el importe total del carrito-->
@@ -115,17 +113,6 @@
     </center>
 </body>
 
-<script>
-    function decrementarCantidad(num) {
-    var campoCantidad = document.getElementById("cantidad-" + num);
-    var cantidad = parseInt(campoCantidad.value);
-    cantidad -= 1;
-    if (cantidad < 0) {
-        cantidad = 0;
-    }
-    campoCantidad.value = cantidad;
-    document.getElementsByName("itemCantidad[]")[num].value = cantidad;
-}
-</script>
+<script src="../js/auxiliarCarrito.js"></script>
 
 </html>

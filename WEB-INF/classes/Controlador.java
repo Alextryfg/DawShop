@@ -43,10 +43,7 @@ public class Controlador extends HttpServlet {
 
     // Generamos un objeto sesion
     HttpSession session = request.getSession(true);
-
-    // Generamos un objeto para el contexto de la aplicacion
-    ServletContext context = getServletContext();
-
+    
     // Ejecutamos en funcion de la accion del usuario
     if (request.getParameter("seleccion") != null) {
 
@@ -99,16 +96,18 @@ public class Controlador extends HttpServlet {
           Producto p=temp.getCompra().get(i);
           p.setCantidad(Integer.parseInt(cantidad[i]));
           temp.actualizarPrecioTotal();
-          if(p.getCantidad()==0)
-            temp.getCompra().remove(p);
           
           }
 
-          //Recolocamos los indices
-          for(int i=0; i<temp.getCompra().size(); i++){
-            Producto p = temp.getCompra().get(i);
-            p.setNum(i);
+        //Recolocamos los indices y eliminamos los elementos que queden a 0
+        for(int i=0; i<temp.getCompra().size(); i++){
+          Producto p = temp.getCompra().get(i);
+          p.setNum(i);
+          if(p.getCantidad()==0){
+            temp.getCompra().remove(p);
+            i--;
           }
+        }
         
         
 
